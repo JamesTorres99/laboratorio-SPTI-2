@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!-- saved from url=(0042)https://192.168.0.14/reports/dashboard.php -->
+<html lang="en" xml:lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script src="https://192.168.0.14/js/jquery.min.js"></script>
+  <script src="https://192.168.0.14/js/bootstrap.min.js"></script>
+  <script src="https://192.168.0.14/js/bootstrap-multiselect.js"></script>
+  <script src="https://192.168.0.14/js/sorttable.js"></script>
+  <script src="https://192.168.0.14/js/obsolete.js"></script>
+  <script src="https://192.168.0.14/js/highcharts/code/highcharts.js"></script>
+  <title>SimpleRisk: Enterprise Risk Management Simplified</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://192.168.0.14/css/bootstrap.css">
+  <link rel="stylesheet" href="https://192.168.0.14/css/bootstrap-responsive.css">
+
+  <link rel="stylesheet" href="https://192.168.0.14/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://192.168.0.14/css/theme.css">
+  <link rel="stylesheet" href="https://192.168.0.14/css/side-navigation.css">
+
+  <script type="">
+    function submitForm() {
+        var brands = $('#teams option:selected');
+        var selected = [];
+        $(brands).each(function(index, brand){
+            selected.push($(this).val());
+        });
+        
+        $("#team_options").val(selected.join(","));
+        $("#risks_dashboard_form").submit();
+    }
+  
+    $(function(){
+        $("#teams").multiselect({
+            allSelectedText: 'All Teams',
+            includeSelectAllOption: true,
+            onChange: submitForm,
+            onSelectAll: submitForm,
+            onDeselectAll: submitForm,
+        });
+    });
+  
+  </script>
+  
+  <link rel="shortcut icon" href="https://192.168.0.14/favicon.ico">
+<script src="https://192.168.0.14/js/alerts/toastr.min.js"></script>
+<script src="https://192.168.0.14/js/alerts/alert-helper.js"></script>
+<script>
+    toastr.options.timeOut = 5000;
+</script>
+<link rel="stylesheet" href="https://192.168.0.14/css/toastr.min.css">
+<style>
+    .toast-top-right {
+        top: 75px;
+        right: 12px;
+    }
+    #toast-container > div {
+        opacity:1;
+    }
+</style>
+<script type="text/javascript">if (top != self) {top.location.href = self.location.href;}</script><script type="text/javascript">var csrfMagicToken = "sid:fd830c532f6205fa54b1f0ba710413c07bc27f37,1612912292";var csrfMagicName = "__csrf_magic";</script><script src="https://192.168.0.14/includes/csrf-magic/csrf-magic.js" type="text/javascript"></script></head>
+
+<body>
+
+
+  <script>
+var BASE_URL = 'https://192.168.0.14'; 
+var field_required_lang = '_XXX_ field is required'; 
+</script>
+<div id="load" style="display:none;">Sending request. Please wait.</div><header class="l-header">
+<div class="navbar">
+<div class="navbar-inner">
+<div class="container-fluid">
+<a class="brand" href="https://www.simplerisk.com/"><img src="https://192.168.0.14/images/logo@2x.png" alt="SimpleRisk Logo"></a>
+<div class="navbar-content">
+<ul class="nav">
+<li>
+<a href="https://192.168.0.14/governance/index.php">Governance</a>
+</li>
+<li>
+<a href="https://192.168.0.14/management/index.php">Risk Management</a>
+</li>
+<li>
+<a href="https://192.168.0.14/compliance/index.php">Compliance</a>
+</li>
+<li>
+<a href="https://192.168.0.14/assets/index.php">Asset Management</a>
+</li>
+<li>
+<a href="https://192.168.0.14/assessments/index.php">Assessments</a>
+</li>
+<li class="active">
+<a href="https://192.168.0.14/reports/index.php">Reporting</a>
+</li>
+<li>
+<a href="https://192.168.0.14/admin/index.php">Configure</a>
+</li>
+</ul>
+</div>
+<div class="pull-right user--info">
+<a class="dropdown-toggle" data-toggle="dropdown" href="https://192.168.0.14/reports/dashboard.php#">Admin<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li>
+<a href="https://192.168.0.14/account/profile.php">My Profile</a>
+</li>
+<li>
+<a href="https://192.168.0.14/logout.php">Logout</a>
+</li>
+</ul>
+</div>
+<div class="pull-right help">
+<a class="dropdown-toggle" data-toggle="dropdown" href="https://192.168.0.14/reports/dashboard.php#"><img src="https://192.168.0.14/images/helpicon-top.png"><span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li>
+<a href="https://simplerisk.freshdesk.com/a/solutions/folders/6000228831" target="_blank">How-To Videos</a>
+</li>
+<li>
+<a href="https://simplerisk.freshdesk.com/a/solutions/folders/6000168810" target="_blank">FAQs</a>
+</li>
+<li>
+<a href="https://github.com/simplerisk/documentation/raw/master/SimpleRisk%20Release%20Notes%20.pdf" target="_blank">What's New</a>
+</li>
+<li>
+<a href="https://simplerisk.freshdesk.com/a/solutions/articles/6000190811" target="_blank">Roadmap</a>
+</li>
+</ul>
+</div>
+
+                    <div class="pull-right search-risks">
+                        <a id="show-search-pop"><i class="fa fa-search"></i></a>
+                        <div class="search-popup" style="display: none;">
+                            <form name="search" action="https://192.168.0.14/management/view.php" method="get">
+                                <span class="search--wrapper">
+                                    <input type="text" size="6" name="id" placeholder="ID#" onclick="this.setSelectionRange(0, this.value.length)">
+                                    <a href="javascript:document.search.submit()"><i class="fa fa-search"></i></a>
+                                </span>
+                            </form>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+                        $(document).click(function() {
+                            $('.search-popup').hide();
+                        });
+
+                        $('#show-search-pop, .search-popup').click(function(event) {
+                            event.stopPropagation();
+                            event.preventDefault();
+                            $('.search-popup').show();
+                            $('.search-popup .search--wrapper input[type=text]').focus();
+                        });
+                    </script>
+</div>
+</div>
+</div>
+</header>
+
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span3">
+        <ul class="nav nav-pills nav-stacked aside--nav ">
+<li>
+<a href="https://192.168.0.14/reports/index.php">Overview</a>
+</li>
+<li class="active">
+<a href="https://192.168.0.14/reports/dashboard.php">Risk Dashboard</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/risk_appetite.php">Risk Appetite Report</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/trend.php">Risk Trend</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/dynamic_risk_report.php">Dynamic Risk Report</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/risk_average_baseline_metric.php">Risk Average Over Time</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/likelihood_impact.php">Likelihood and Impact</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/riskadvice.php">Risk Advice</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/risks_and_assets.php">Risks and Assets</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/risks_and_controls.php">Risks and Controls</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/my_open.php">All Open Risks Assigned to Me</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/review_needed.php">All Open Risks Needing a Review</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/risks_open_by_team.php?id=true&amp;risk_status=true&amp;subject=true&amp;calculated_risk=true&amp;submission_date=true&amp;team=true&amp;mitigation_planned=true&amp;management_review=true&amp;owner=true&amp;manager=true">All Open Risks by Team by Risk Level</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/high.php">High Risk Report</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/submitted_by_date.php">Submitted Risks By Date</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/mitigations_by_date.php">Mitigations By Date</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/mgmt_reviews_by_date.php">Management Reviews By Date</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/closed_by_date.php">Closed Risks By Date</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/audit_timeline.php">Audit Timeline</a>
+</li>
+</ul>
+      </div>
+      <div class="span9">
+        <div class="row-fluid">
+          <h3>Open Risks (9)</h3>
+        </div>
+        <div class="row-fluid" style="margin-top: -8px;">
+            <div class="span4">
+                <u>Team(s)</u>: &nbsp;
+                <span class="multiselect-native-select"><select multiple="multiple" id="teams" name="teams[]">
+    <option value="0" selected="">Unassigned</option>
+    <option value="1" selected="">Branch Management</option>
+    <option value="2" selected="">Collaboration</option>
+    <option value="3" selected="">Data Center &amp; Storage</option>
+    <option value="4" selected="">Database</option>
+    <option value="5" selected="">Information Security</option>
+    <option value="6" selected="">IT Systems Management</option>
+    <option value="7" selected="">Network</option>
+    <option value="8" selected="">Unix</option>
+    <option value="9" selected="">Web Systems</option>
+    <option value="10" selected="">Windows</option>
+  </select><div class="btn-group"><button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="Unassigned, Branch Management, Collaboration, Data Center &amp; Storage, Database, Information Security, IT Systems Management, Network, Unix, Web Systems, Windows"><span class="multiselect-selected-text">All Teams (11)</span> <b class="caret"></b></button><ul class="multiselect-container dropdown-menu"><li class="multiselect-item multiselect-all active"><a tabindex="0" class="multiselect-all"><label class="checkbox"><input type="checkbox" value="multiselect-all">  Select all</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Unassigned"><input type="checkbox" value="0"> Unassigned</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Branch Management"><input type="checkbox" value="1"> Branch Management</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Collaboration"><input type="checkbox" value="2"> Collaboration</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Data Center &amp; Storage"><input type="checkbox" value="3"> Data Center &amp; Storage</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Database"><input type="checkbox" value="4"> Database</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Information Security"><input type="checkbox" value="5"> Information Security</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="IT Systems Management"><input type="checkbox" value="6"> IT Systems Management</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Network"><input type="checkbox" value="7"> Network</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Unix"><input type="checkbox" value="8"> Unix</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Web Systems"><input type="checkbox" value="9"> Web Systems</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Windows"><input type="checkbox" value="10"> Windows</label></a></li></ul></div></span>
+                <form id="risks_dashboard_form" method="GET">
+                    <input type="hidden" value="0,1,2,3,4,5,6,7,8,9,10" name="teams" id="team_options">
+                </form>
+            </div>
+        </div>
+        
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="well">
+              <div id="open_risk_level_pie" data-highcharts-chart="0" style="overflow: hidden;"><div id="highcharts-mpym9mb-0" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 305px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="305" height="400" viewBox="0 0 305 400"><desc>Created with Highcharts 7.1.2</desc><defs><clippath id="highcharts-mpym9mb-3-"><rect x="0" y="0" width="285" height="290" fill="none"></rect></clippath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="305" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="10" y="53" width="285" height="290"></rect><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="10" y="53" width="285" height="290"></rect><g class="highcharts-series-group" data-z-index="3"><g data-z-index="0.1" class="highcharts-series highcharts-series-0 highcharts-pie-series  highcharts-tracker" transform="translate(10,53) scale(1 1)" style="cursor:pointer;"><path fill="orange" d="M 142.4730133005104 12.500002748233811 A 132.5 132.5 0 0 1 272.95313184238967 121.80020705885283 L 142.5 145 A 0 0 0 0 0 142.5 145 Z" transform="translate(0,0)" stroke="#ffffff" stroke-width="1" opacity="1" stroke-linejoin="round" class="highcharts-point highcharts-color-0"></path><path fill="yellow" d="M 272.97626640490364 121.93067176884854 A 132.5 132.5 0 1 1 142.3159601582055 12.500127813885683 L 142.5 145 A 0 0 0 1 0 142.5 145 Z" transform="translate(0,0)" stroke="#ffffff" stroke-width="1" opacity="1" stroke-linejoin="round" class="highcharts-point highcharts-color-1"></path></g><g data-z-index="0.1" class="highcharts-markers highcharts-series-0 highcharts-pie-series " transform="translate(10,53) scale(1 1)"></g></g><text x="153" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:18px;fill:#333333;" y="24"><tspan>Risk Level</tspan></text><text x="153" text-anchor="middle" class="highcharts-subtitle" data-z-index="4" style="color:#666666;fill:#666666;" y="52"></text><g class="highcharts-legend" data-z-index="7" transform="translate(76,355)"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="152" height="30" visibility="visible"></rect><g data-z-index="1"><g><g class="highcharts-legend-item highcharts-pie-series highcharts-color-0" data-z-index="1" transform="translate(8,3)"><text x="21" style="color:#333333;cursor:pointer;font-size:12px;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2" y="15"><tspan>Medium</tspan></text><rect x="2" y="4" width="12" height="12" fill="orange" rx="6" ry="6" class="highcharts-point" data-z-index="3"></rect></g><g class="highcharts-legend-item highcharts-pie-series highcharts-color-1" data-z-index="1" transform="translate(97.890625,3)"><text x="21" y="15" style="color:#333333;cursor:pointer;font-size:12px;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2"><tspan>Low</tspan></text><rect x="2" y="4" width="12" height="12" fill="yellow" rx="6" ry="6" class="highcharts-point" data-z-index="3"></rect></g></g></g></g></svg></div></div>
+<script type="text/javascript">open_risk_level_pie = new Highcharts.Chart({"chart":{"renderTo":"open_risk_level_pie","plotBackgroundColor":null,"plotBorderWidth":null,"plotShadow":false},"title":{"text":"Risk Level"},"tooltip":{"formatter":function() {
+    return '<b>'+ this.point.name +'</b>: '+ this.point.y; }},"plotOptions":{"pie":{"point":{"events":{"click":function() {
+    location.href = 'dynamic_risk_report.php?status=0&group=1&sort=0'; }}},"allowPointSelect":1,"cursor":"pointer","dataLabels":{"enabled":false},"showInLegend":1,"colors":["orange","yellow","lightgrey"]}},"credits":{"enabled":false},"series":[{"type":"pie","name":"Level","data":[["Medium",2],["Low",7]]}]});</script>
+            </div>
+          </div>
+          <div class="span4">
+            <div class="well">
+              <div id="open_risk_status_pie" data-highcharts-chart="1" style="overflow: hidden;"><div id="highcharts-mpym9mb-4" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 305px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="305" height="400" viewBox="0 0 305 400"><desc>Created with Highcharts 7.1.2</desc><defs><clippath id="highcharts-mpym9mb-7-"><rect x="0" y="0" width="285" height="290" fill="none"></rect></clippath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="305" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="10" y="53" width="285" height="290"></rect><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="10" y="53" width="285" height="290"></rect><g class="highcharts-series-group" data-z-index="3"><g data-z-index="0.1" class="highcharts-series highcharts-series-0 highcharts-pie-series  highcharts-tracker" transform="translate(10,53) scale(1 1)" style="cursor:pointer;"><path fill="#7cb5ec" d="M 142.4730133005104 12.500002748233811 A 132.5 132.5 0 1 1 11.987157641663003 122.13850443326432 L 142.5 145 A 0 0 0 1 0 142.5 145 Z" transform="translate(0,0)" stroke="#ffffff" stroke-width="1" opacity="1" stroke-linejoin="round" class="highcharts-point highcharts-color-0"></path><path fill="#434348" d="M 12.010084389835242 122.00800304340497 A 132.5 132.5 0 0 1 142.3159601582055 12.500127813885683 L 142.5 145 A 0 0 0 0 0 142.5 145 Z" transform="translate(0,0)" stroke="#ffffff" stroke-width="1" opacity="1" stroke-linejoin="round" class="highcharts-point highcharts-color-1"></path></g><g data-z-index="0.1" class="highcharts-markers highcharts-series-0 highcharts-pie-series " transform="translate(10,53) scale(1 1)"></g></g><text x="153" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:18px;fill:#333333;" y="24"><tspan>Status</tspan></text><text x="153" text-anchor="middle" class="highcharts-subtitle" data-z-index="4" style="color:#666666;fill:#666666;" y="52"></text><g class="highcharts-legend" data-z-index="7" transform="translate(56,355)"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="193" height="30" visibility="visible"></rect><g data-z-index="1"><g><g class="highcharts-legend-item highcharts-pie-series highcharts-color-0" data-z-index="1" transform="translate(8,3)"><text x="21" style="color:#333333;cursor:pointer;font-size:12px;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2" y="15"><tspan>Accepted</tspan></text><rect x="2" y="4" width="12" height="12" fill="#7cb5ec" rx="6" ry="6" class="highcharts-point" data-z-index="3"></rect></g><g class="highcharts-legend-item highcharts-pie-series highcharts-color-1" data-z-index="1" transform="translate(106.640625,3)"><text x="21" y="15" style="color:#333333;cursor:pointer;font-size:12px;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2"><tspan>Mitigated</tspan></text><rect x="2" y="4" width="12" height="12" fill="#434348" rx="6" ry="6" class="highcharts-point" data-z-index="3"></rect></g></g></g></g></svg></div></div>
+<script type="text/javascript">open_risk_status_pie = new Highcharts.Chart({"chart":{"renderTo":"open_risk_status_pie","plotBackgroundColor":null,"plotBorderWidth":null,"plotShadow":false},"title":{"text":"Status"},"tooltip":{"formatter":function() {
+        return '<b>'+ this.point.name +'</b>: '+ this.point.y; }},"plotOptions":{"pie":{"point":{"events":{"click":function() {
+        location.href = 'dynamic_risk_report.php?status=0&group=2&sort=0'; }}},"allowPointSelect":1,"cursor":"pointer","dataLabels":{"enabled":false},"showInLegend":1}},"credits":{"enabled":false},"series":[{"type":"pie","name":"status","data":[["Accepted",7],["Mitigated",2]]}]});</script>
+            </div>
+          </div>
+          <div class="span4">
+            <div class="well">
+              <div id="open_risk_location_pie" data-highcharts-chart="2" style="overflow: hidden;"><div id="highcharts-mpym9mb-8" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 305px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="305" height="400" viewBox="0 0 305 400"><desc>Created with Highcharts 7.1.2</desc><defs><clippath id="highcharts-mpym9mb-10-"><rect x="0" y="0" width="285" height="290" fill="none"></rect></clippath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="305" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="10" y="53" width="285" height="290"></rect><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="10" y="53" width="285" height="290"></rect><g class="highcharts-series-group" data-z-index="3"><g data-z-index="0.1" class="highcharts-series highcharts-series-0 highcharts-pie-series  highcharts-tracker" transform="translate(10,53) scale(1 1)" style="cursor:pointer;"><path fill="#7cb5ec" d="M 142.4730133005104 12.500002748233811 A 132.5 132.5 0 1 1 142.3159601582055 12.500127813885683 M 142.5 145 A 0 0 0 1 0 142.5 145 " transform="translate(0,0)" stroke="#ffffff" stroke-width="1" opacity="1" stroke-linejoin="round" class="highcharts-point highcharts-color-0"></path></g><g data-z-index="0.1" class="highcharts-markers highcharts-series-0 highcharts-pie-series " transform="translate(10,53) scale(1 1)"></g></g><text x="153" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:18px;fill:#333333;" y="24"><tspan>Site/Location</tspan></text><text x="153" text-anchor="middle" class="highcharts-subtitle" data-z-index="4" style="color:#666666;fill:#666666;" y="52"></text><g class="highcharts-legend" data-z-index="7" transform="translate(99,355)"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="107" height="30" visibility="visible"></rect><g data-z-index="1"><g><g class="highcharts-legend-item highcharts-pie-series highcharts-color-0" data-z-index="1" transform="translate(8,3)"><text x="21" style="color:#333333;cursor:pointer;font-size:12px;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2" y="15"><tspan>Unassigned</tspan></text><rect x="2" y="4" width="12" height="12" fill="#7cb5ec" rx="6" ry="6" class="highcharts-point" data-z-index="3"></rect></g></g></g></g></svg></div></div>
+<script type="text/javascript">open_risk_location_pie = new Highcharts.Chart({"chart":{"renderTo":"open_risk_location_pie","plotBackgroundColor":null,"plotBorderWidth":null,"plotShadow":false},"title":{"text":"Site/Location"},"tooltip":{"formatter":function() {
+    return '<b>'+ this.point.name +'</b>: '+ this.point.y; }},"plotOptions":{"pie":{"point":{"events":{"click":function(e) {
+    location.href = 'dynamic_risk_report.php?status=0&sort=0&locations_filter[]=' + e.point.options.value; }}},"allowPointSelect":1,"cursor":"pointer","dataLabels":{"enabled":false},"showInLegend":1}},"credits":{"enabled":false},"series":[{"type":"pie","name":"location","data":[{"name":"Unassigned","y":9,"value":""}]}]});</script>
+            </div>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="well">
+              <div id="open_risk_source_pie" data-highcharts-chart="3" style="overflow: hidden;"><div id="highcharts-mpym9mb-11" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 305px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="305" height="400" viewBox="0 0 305 400"><desc>Created with Highcharts 7.1.2</desc><defs><clippath id="highcharts-mpym9mb-13-"><rect x="0" y="0" width="285" height="290" fill="none"></rect></clippath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="305" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="10" y="53" width="285" height="290"></rect><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="10" y="53" width="285" height="290"></rect><g class="highcharts-series-group" data-z-index="3"><g data-z-index="0.1" class="highcharts-series highcharts-series-0 highcharts-pie-series  highcharts-tracker" transform="translate(10,53) scale(1 1)" style="cursor:pointer;"><path fill="#7cb5ec" d="M 142.4730133005104 12.500002748233811 A 132.5 132.5 0 1 1 142.3159601582055 12.500127813885683 M 142.5 145 A 0 0 0 1 0 142.5 145 " transform="translate(0,0)" stroke="#ffffff" stroke-width="1" opacity="1" stroke-linejoin="round" class="highcharts-point highcharts-color-0"></path></g><g data-z-index="0.1" class="highcharts-markers highcharts-series-0 highcharts-pie-series " transform="translate(10,53) scale(1 1)"></g></g><text x="153" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:18px;fill:#333333;" y="24"><tspan>Risk Source</tspan></text><text x="153" text-anchor="middle" class="highcharts-subtitle" data-z-index="4" style="color:#666666;fill:#666666;" y="52"></text><g class="highcharts-legend" data-z-index="7" transform="translate(99,355)"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="107" height="30" visibility="visible"></rect><g data-z-index="1"><g><g class="highcharts-legend-item highcharts-pie-series highcharts-color-0" data-z-index="1" transform="translate(8,3)"><text x="21" style="color:#333333;cursor:pointer;font-size:12px;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2" y="15"><tspan>Unassigned</tspan></text><rect x="2" y="4" width="12" height="12" fill="#7cb5ec" rx="6" ry="6" class="highcharts-point" data-z-index="3"></rect></g></g></g></g></svg></div></div>
+<script type="text/javascript">open_risk_source_pie = new Highcharts.Chart({"chart":{"renderTo":"open_risk_source_pie","plotBackgroundColor":null,"plotBorderWidth":null,"plotShadow":false},"title":{"text":"Risk Source"},"tooltip":{"formatter":function() {
+        return '<b>'+ this.point.name +'</b>: '+ this.point.y; }},"plotOptions":{"pie":{"point":{"events":{"click":function() {
+        location.href = 'dynamic_risk_report.php?status=0&group=4&sort=0'; }}},"allowPointSelect":1,"cursor":"pointer","dataLabels":{"enabled":false},"showInLegend":1}},"credits":{"enabled":false},"series":[{"type":"pie","name":"source","data":[["Unassigned",9]]}]});</script>
+            </div>
+          </div>
+          <div class="span4">
+            <div class="well">
+              <div id="open_risk_category_pie" data-highcharts-chart="4" style="overflow: hidden;"><div id="highcharts-mpym9mb-14" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 305px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="305" height="400" viewBox="0 0 305 400"><desc>Created with Highcharts 7.1.2</desc><defs><clippath id="highcharts-mpym9mb-16-"><rect x="0" y="0" width="285" height="290" fill="none"></rect></clippath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="305" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="10" y="53" width="285" height="290"></rect><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="10" y="53" width="285" height="290"></rect><g class="highcharts-series-group" data-z-index="3"><g data-z-index="0.1" class="highcharts-series highcharts-series-0 highcharts-pie-series  highcharts-tracker" transform="translate(10,53) scale(1 1)" style="cursor:pointer;"><path fill="#7cb5ec" d="M 142.4730133005104 12.500002748233811 A 132.5 132.5 0 1 1 142.3159601582055 12.500127813885683 M 142.5 145 A 0 0 0 1 0 142.5 145 " transform="translate(0,0)" stroke="#ffffff" stroke-width="1" opacity="1" stroke-linejoin="round" class="highcharts-point highcharts-color-0"></path></g><g data-z-index="0.1" class="highcharts-markers highcharts-series-0 highcharts-pie-series " transform="translate(10,53) scale(1 1)"></g></g><text x="153" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:18px;fill:#333333;" y="24"><tspan>Category</tspan></text><text x="153" text-anchor="middle" class="highcharts-subtitle" data-z-index="4" style="color:#666666;fill:#666666;" y="52"></text><g class="highcharts-legend" data-z-index="7" transform="translate(99,355)"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="107" height="30" visibility="visible"></rect><g data-z-index="1"><g><g class="highcharts-legend-item highcharts-pie-series highcharts-color-0" data-z-index="1" transform="translate(8,3)"><text x="21" style="color:#333333;cursor:pointer;font-size:12px;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2" y="15"><tspan>Unassigned</tspan></text><rect x="2" y="4" width="12" height="12" fill="#7cb5ec" rx="6" ry="6" class="highcharts-point" data-z-index="3"></rect></g></g></g></g></svg></div></div>
+<script type="text/javascript">open_risk_category_pie = new Highcharts.Chart({"chart":{"renderTo":"open_risk_category_pie","plotBackgroundColor":null,"plotBorderWidth":null,"plotShadow":false},"title":{"text":"Category"},"tooltip":{"formatter":function() {
+        return '<b>'+ this.point.name +'</b>: '+ this.point.y; }},"plotOptions":{"pie":{"point":{"events":{"click":function() {
+        location.href = 'dynamic_risk_report.php?status=0&group=5&sort=0'; }}},"allowPointSelect":1,"cursor":"pointer","dataLabels":{"enabled":false},"showInLegend":1}},"credits":{"enabled":false},"series":[{"type":"pie","name":"category","data":[["Unassigned",9]]}]});</script>
+            </div>
+          </div>
+          <div class="span4">
+            <div class="well">
+              <div id="open_risk_team_pie" data-highcharts-chart="5" style="overflow: hidden;"><div id="highcharts-mpym9mb-17" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 305px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="305" height="400" viewBox="0 0 305 400"><desc>Created with Highcharts 7.1.2</desc><defs><clippath id="highcharts-mpym9mb-19-"><rect x="0" y="0" width="285" height="290" fill="none"></rect></clippath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="305" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="10" y="53" width="285" height="290"></rect><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="10" y="53" width="285" height="290"></rect><g class="highcharts-series-group" data-z-index="3"><g data-z-index="0.1" class="highcharts-series highcharts-series-0 highcharts-pie-series  highcharts-tracker" transform="translate(10,53) scale(1 1)" style="cursor:pointer;"><path fill="#7cb5ec" d="M 142.4730133005104 12.500002748233811 A 132.5 132.5 0 1 1 142.3159601582055 12.500127813885683 M 142.5 145 A 0 0 0 1 0 142.5 145 " transform="translate(0,0)" stroke="#ffffff" stroke-width="1" opacity="1" stroke-linejoin="round" class="highcharts-point highcharts-color-0"></path></g><g data-z-index="0.1" class="highcharts-markers highcharts-series-0 highcharts-pie-series " transform="translate(10,53) scale(1 1)"></g></g><text x="153" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:18px;fill:#333333;" y="24"><tspan>Team</tspan></text><text x="153" text-anchor="middle" class="highcharts-subtitle" data-z-index="4" style="color:#666666;fill:#666666;" y="52"></text><g class="highcharts-legend" data-z-index="7" transform="translate(99,355)"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="107" height="30" visibility="visible"></rect><g data-z-index="1"><g><g class="highcharts-legend-item highcharts-pie-series highcharts-color-0" data-z-index="1" transform="translate(8,3)"><text x="21" style="color:#333333;cursor:pointer;font-size:12px;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2" y="15"><tspan>Unassigned</tspan></text><rect x="2" y="4" width="12" height="12" fill="#7cb5ec" rx="6" ry="6" class="highcharts-point" data-z-index="3"></rect></g></g></g></g></svg></div></div>
+<script type="text/javascript">open_risk_team_pie = new Highcharts.Chart({"chart":{"renderTo":"open_risk_team_pie","plotBackgroundColor":null,"plotBorderWidth":null,"plotShadow":false},"title":{"text":"Team"},"tooltip":{"formatter":function() {
+    return '<b>'+ this.point.name +'</b>: '+ this.point.y; }},"plotOptions":{"pie":{"point":{"events":{"click":function() {
+    location.href = 'dynamic_risk_report.php?status=0&group=6&sort=0'; }}},"allowPointSelect":1,"cursor":"pointer","dataLabels":{"enabled":false},"showInLegend":1}},"credits":{"enabled":false},"series":[{"type":"pie","name":"team","data":[["Unassigned",9]]}]});</script>
+            </div>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="well">
+              <div id="open_risk_technology_pie" data-highcharts-chart="6" style="overflow: hidden;"><div id="highcharts-mpym9mb-20" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 305px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="305" height="400" viewBox="0 0 305 400"><desc>Created with Highcharts 7.1.2</desc><defs><clippath id="highcharts-mpym9mb-22-"><rect x="0" y="0" width="285" height="290" fill="none"></rect></clippath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="305" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="10" y="53" width="285" height="290"></rect><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="10" y="53" width="285" height="290"></rect><g class="highcharts-series-group" data-z-index="3"><g data-z-index="0.1" class="highcharts-series highcharts-series-0 highcharts-pie-series  highcharts-tracker" transform="translate(10,53) scale(1 1)" style="cursor:pointer;"><path fill="#7cb5ec" d="M 142.4730133005104 12.500002748233811 A 132.5 132.5 0 1 1 142.3159601582055 12.500127813885683 M 142.5 145 A 0 0 0 1 0 142.5 145 " transform="translate(0,0)" stroke="#ffffff" stroke-width="1" opacity="1" stroke-linejoin="round" class="highcharts-point highcharts-color-0"></path></g><g data-z-index="0.1" class="highcharts-markers highcharts-series-0 highcharts-pie-series " transform="translate(10,53) scale(1 1)"></g></g><text x="153" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:18px;fill:#333333;" y="24"><tspan>Technology</tspan></text><text x="153" text-anchor="middle" class="highcharts-subtitle" data-z-index="4" style="color:#666666;fill:#666666;" y="52"></text><g class="highcharts-legend" data-z-index="7" transform="translate(99,355)"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="107" height="30" visibility="visible"></rect><g data-z-index="1"><g><g class="highcharts-legend-item highcharts-pie-series highcharts-color-0" data-z-index="1" transform="translate(8,3)"><text x="21" style="color:#333333;cursor:pointer;font-size:12px;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2" y="15"><tspan>Unassigned</tspan></text><rect x="2" y="4" width="12" height="12" fill="#7cb5ec" rx="6" ry="6" class="highcharts-point" data-z-index="3"></rect></g></g></g></g></svg></div></div>
+<script type="text/javascript">open_risk_technology_pie = new Highcharts.Chart({"chart":{"renderTo":"open_risk_technology_pie","plotBackgroundColor":null,"plotBorderWidth":null,"plotShadow":false},"title":{"text":"Technology"},"tooltip":{"formatter":function() {
+        return '<b>'+ this.point.name +'</b>: '+ this.point.y; }},"plotOptions":{"pie":{"point":{"events":{"click":function() {
+        location.href = 'dynamic_risk_report.php?status=0&group=7&sort=0'; }}},"allowPointSelect":1,"cursor":"pointer","dataLabels":{"enabled":false},"showInLegend":1}},"credits":{"enabled":false},"series":[{"type":"pie","name":"technology","data":[["Unassigned",9]]}]});</script>
+            </div>
+          </div>
+          <div class="span4">
+            <div class="well">
+              <div id="open_risk_owner_pie" data-highcharts-chart="7" style="overflow: hidden;"><div id="highcharts-mpym9mb-23" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 305px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="305" height="400" viewBox="0 0 305 400"><desc>Created with Highcharts 7.1.2</desc><defs><clippath id="highcharts-mpym9mb-25-"><rect x="0" y="0" width="285" height="290" fill="none"></rect></clippath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="305" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="10" y="53" width="285" height="290"></rect><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="10" y="53" width="285" height="290"></rect><g class="highcharts-series-group" data-z-index="3"><g data-z-index="0.1" class="highcharts-series highcharts-series-0 highcharts-pie-series  highcharts-tracker" transform="translate(10,53) scale(1 1)" style="cursor:pointer;"><path fill="#7cb5ec" d="M 142.4730133005104 12.500002748233811 A 132.5 132.5 0 1 1 142.3159601582055 12.500127813885683 M 142.5 145 A 0 0 0 1 0 142.5 145 " transform="translate(0,0)" stroke="#ffffff" stroke-width="1" opacity="1" stroke-linejoin="round" class="highcharts-point highcharts-color-0"></path></g><g data-z-index="0.1" class="highcharts-markers highcharts-series-0 highcharts-pie-series " transform="translate(10,53) scale(1 1)"></g></g><text x="153" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:18px;fill:#333333;" y="24"><tspan>Owner</tspan></text><text x="153" text-anchor="middle" class="highcharts-subtitle" data-z-index="4" style="color:#666666;fill:#666666;" y="52"></text><g class="highcharts-legend" data-z-index="7" transform="translate(99,355)"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="107" height="30" visibility="visible"></rect><g data-z-index="1"><g><g class="highcharts-legend-item highcharts-pie-series highcharts-color-0" data-z-index="1" transform="translate(8,3)"><text x="21" style="color:#333333;cursor:pointer;font-size:12px;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2" y="15"><tspan>Unassigned</tspan></text><rect x="2" y="4" width="12" height="12" fill="#7cb5ec" rx="6" ry="6" class="highcharts-point" data-z-index="3"></rect></g></g></g></g></svg></div></div>
+<script type="text/javascript">open_risk_owner_pie = new Highcharts.Chart({"chart":{"renderTo":"open_risk_owner_pie","plotBackgroundColor":null,"plotBorderWidth":null,"plotShadow":false},"title":{"text":"Owner"},"tooltip":{"formatter":function() {
+        return '<b>'+ this.point.name +'</b>: '+ this.point.y; }},"plotOptions":{"pie":{"point":{"events":{"click":function() {
+        location.href = 'dynamic_risk_report.php?status=0&group=8&sort=0'; }}},"allowPointSelect":1,"cursor":"pointer","dataLabels":{"enabled":false},"showInLegend":1}},"credits":{"enabled":false},"series":[{"type":"pie","name":"owner","data":[["Unassigned",9]]}]});</script>
+            </div>
+          </div>
+          <div class="span4">
+            <div class="well">
+              <div id="open_risk_owners_manager_pie" data-highcharts-chart="8" style="overflow: hidden;"><div id="highcharts-mpym9mb-26" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 305px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="305" height="400" viewBox="0 0 305 400"><desc>Created with Highcharts 7.1.2</desc><defs><clippath id="highcharts-mpym9mb-28-"><rect x="0" y="0" width="285" height="290" fill="none"></rect></clippath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="305" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="10" y="53" width="285" height="290"></rect><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="10" y="53" width="285" height="290"></rect><g class="highcharts-series-group" data-z-index="3"><g data-z-index="0.1" class="highcharts-series highcharts-series-0 highcharts-pie-series  highcharts-tracker" transform="translate(10,53) scale(1 1)" style="cursor:pointer;"><path fill="#7cb5ec" d="M 142.4730133005104 12.500002748233811 A 132.5 132.5 0 1 1 142.3159601582055 12.500127813885683 M 142.5 145 A 0 0 0 1 0 142.5 145 " transform="translate(0,0)" stroke="#ffffff" stroke-width="1" opacity="1" stroke-linejoin="round" class="highcharts-point highcharts-color-0"></path></g><g data-z-index="0.1" class="highcharts-markers highcharts-series-0 highcharts-pie-series " transform="translate(10,53) scale(1 1)"></g></g><text x="153" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:18px;fill:#333333;" y="24"><tspan>Owner's Manager</tspan></text><text x="153" text-anchor="middle" class="highcharts-subtitle" data-z-index="4" style="color:#666666;fill:#666666;" y="52"></text><g class="highcharts-legend" data-z-index="7" transform="translate(99,355)"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="107" height="30" visibility="visible"></rect><g data-z-index="1"><g><g class="highcharts-legend-item highcharts-pie-series highcharts-color-0" data-z-index="1" transform="translate(8,3)"><text x="21" style="color:#333333;cursor:pointer;font-size:12px;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2" y="15"><tspan>Unassigned</tspan></text><rect x="2" y="4" width="12" height="12" fill="#7cb5ec" rx="6" ry="6" class="highcharts-point" data-z-index="3"></rect></g></g></g></g></svg></div></div>
+<script type="text/javascript">open_risk_owners_manager_pie = new Highcharts.Chart({"chart":{"renderTo":"open_risk_owners_manager_pie","plotBackgroundColor":null,"plotBorderWidth":null,"plotShadow":false},"title":{"text":"Owner's Manager"},"tooltip":{"formatter":function() {
+        return '<b>'+ this.point.name +'</b>: '+ this.point.y; }},"plotOptions":{"pie":{"point":{"events":{"click":function() {
+        location.href = 'dynamic_risk_report.php?status=0&group=9&sort=0'; }}},"allowPointSelect":1,"cursor":"pointer","dataLabels":{"enabled":false},"showInLegend":1}},"credits":{"enabled":false},"series":[{"type":"pie","name":"manager","data":[["Unassigned",9]]}]});</script>
+            </div>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="well">
+              <div id="open_risk_scoring_method_pie" data-highcharts-chart="9" style="overflow: hidden;"><div id="highcharts-mpym9mb-29" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 305px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="305" height="400" viewBox="0 0 305 400"><desc>Created with Highcharts 7.1.2</desc><defs><clippath id="highcharts-mpym9mb-31-"><rect x="0" y="0" width="285" height="290" fill="none"></rect></clippath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="305" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="10" y="53" width="285" height="290"></rect><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="10" y="53" width="285" height="290"></rect><g class="highcharts-series-group" data-z-index="3"><g data-z-index="0.1" class="highcharts-series highcharts-series-0 highcharts-pie-series  highcharts-tracker" transform="translate(10,53) scale(1 1)" style="cursor:pointer;"><path fill="#7cb5ec" d="M 142.4730133005104 12.500002748233811 A 132.5 132.5 0 1 1 142.3159601582055 12.500127813885683 M 142.5 145 A 0 0 0 1 0 142.5 145 " transform="translate(0,0)" stroke="#ffffff" stroke-width="1" opacity="1" stroke-linejoin="round" class="highcharts-point highcharts-color-0"></path></g><g data-z-index="0.1" class="highcharts-markers highcharts-series-0 highcharts-pie-series " transform="translate(10,53) scale(1 1)"></g></g><text x="153" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:18px;fill:#333333;" y="24"><tspan>Risk Scoring Method</tspan></text><text x="153" text-anchor="middle" class="highcharts-subtitle" data-z-index="4" style="color:#666666;fill:#666666;" y="52"></text><g class="highcharts-legend" data-z-index="7" transform="translate(112,355)"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="81" height="30" visibility="visible"></rect><g data-z-index="1"><g><g class="highcharts-legend-item highcharts-pie-series highcharts-color-0" data-z-index="1" transform="translate(8,3)"><text x="21" style="color:#333333;cursor:pointer;font-size:12px;font-weight:bold;fill:#333333;" text-anchor="start" data-z-index="2" y="15"><tspan>OWASP</tspan></text><rect x="2" y="4" width="12" height="12" fill="#7cb5ec" rx="6" ry="6" class="highcharts-point" data-z-index="3"></rect></g></g></g></g></svg></div></div>
+<script type="text/javascript">open_risk_scoring_method_pie = new Highcharts.Chart({"chart":{"renderTo":"open_risk_scoring_method_pie","plotBackgroundColor":null,"plotBorderWidth":null,"plotShadow":false},"title":{"text":"Risk Scoring Method"},"tooltip":{"formatter":function() {
+        return '<b>'+ this.point.name +'</b>: '+ this.point.y; }},"plotOptions":{"pie":{"point":{"events":{"click":function() {
+        location.href = 'dynamic_risk_report.php?status=0&group=10&sort=0'; }}},"allowPointSelect":1,"cursor":"pointer","dataLabels":{"enabled":false},"showInLegend":1}},"credits":{"enabled":false},"series":[{"type":"pie","name":"scoring_method","data":[["OWASP",9]]}]});</script>
+            </div>
+          </div>
+        </div>
+        <div class="row-fluid">
+          <h3>Closed Risks: (0)</h3>
+        </div>
+        <div class="row-fluid">
+          <div class="span4">
+            <div class="well">
+              <div id="closed_risk_reason_pie" data-highcharts-chart="10" style="overflow: hidden;"><div id="highcharts-mpym9mb-32" dir="ltr" class="highcharts-container " style="position: relative; overflow: hidden; width: 305px; height: 400px; text-align: left; line-height: normal; z-index: 0; -webkit-tap-highlight-color: rgba(0, 0, 0, 0);"><svg version="1.1" class="highcharts-root" style="font-family:&quot;Lucida Grande&quot;, &quot;Lucida Sans Unicode&quot;, Arial, Helvetica, sans-serif;font-size:12px;" xmlns="http://www.w3.org/2000/svg" width="305" height="400" viewBox="0 0 305 400"><desc>Created with Highcharts 7.1.2</desc><defs><clippath id="highcharts-mpym9mb-33-"><rect x="0" y="0" width="285" height="332" fill="none"></rect></clippath></defs><rect fill="#ffffff" class="highcharts-background" x="0" y="0" width="305" height="400" rx="0" ry="0"></rect><rect fill="none" class="highcharts-plot-background" x="10" y="53" width="285" height="332"></rect><rect fill="none" class="highcharts-plot-border" data-z-index="1" x="10" y="53" width="285" height="332"></rect><g class="highcharts-series-group" data-z-index="3"></g><text x="153" text-anchor="middle" class="highcharts-title" data-z-index="4" style="color:#333333;font-size:18px;fill:#333333;" y="24"><tspan>Reason</tspan></text><text x="153" text-anchor="middle" class="highcharts-subtitle" data-z-index="4" style="color:#666666;fill:#666666;" y="52"></text><g class="highcharts-legend" data-z-index="7"><rect fill="none" class="highcharts-legend-box" rx="0" ry="0" x="0" y="0" width="8" height="8" visibility="hidden"></rect><g data-z-index="1"><g></g></g></g></svg></div></div>
+<script type="text/javascript">closed_risk_reason_pie = new Highcharts.Chart({"chart":{"renderTo":"closed_risk_reason_pie","plotBackgroundColor":null,"plotBorderWidth":null,"plotShadow":false},"title":{"text":"Reason"},"tooltip":{"formatter":function() {
+    return '<b>'+ this.point.name +'</b>: '+ this.point.y; }},"plotOptions":{"pie":{"point":{"events":{"click":function() {
+    location.href = 'dynamic_risk_report.php?status=1&group=0&sort=0'; }}},"allowPointSelect":1,"cursor":"pointer","dataLabels":{"enabled":false},"showInLegend":1}},"credits":{"enabled":false}});</script>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+<script type="text/javascript">CsrfMagic.end();</script>
+
+
+</body></html>

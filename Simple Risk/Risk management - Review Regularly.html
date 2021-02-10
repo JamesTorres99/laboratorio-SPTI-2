@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<!-- saved from url=(0048)https://192.168.0.14/management/review_risks.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>SimpleRisk: Enterprise Risk Management Simplified</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+
+    <script src="https://192.168.0.14/js/jquery.min.js"></script>
+    <script src="https://192.168.0.14/js/jquery-ui.min.js"></script>
+    <script src="https://192.168.0.14/js/bootstrap.min.js"></script>
+    <script src="https://192.168.0.14/js/jquery.dataTables.js"></script>
+    <script src="https://192.168.0.14/js/cve_lookup.js"></script>
+    <script src="https://192.168.0.14/js/sorttable.js"></script>
+    <script src="https://192.168.0.14/js/common.js"></script>
+    <script src="https://192.168.0.14/js/pages/risk.js"></script>
+    <script src="https://192.168.0.14/js/highcharts/code/highcharts.js"></script>
+    <script src="https://192.168.0.14/js/moment.min.js"></script>
+    <script src="https://192.168.0.14/js/bootstrap-multiselect.js"></script>
+    <script src="https://192.168.0.14/js/jquery.blockUI.min.js"></script>
+    <script src="https://192.168.0.14/js/moment.min.js"></script>
+
+    <link rel="stylesheet" href="https://192.168.0.14/css/bootstrap.css">
+    <link rel="stylesheet" href="https://192.168.0.14/css/bootstrap-responsive.css">
+    <link rel="stylesheet" href="https://192.168.0.14/css/jquery.dataTables.css">
+
+    <link rel="stylesheet" href="https://192.168.0.14/css/divshot-util.css">
+    <link rel="stylesheet" href="https://192.168.0.14/css/divshot-canvas.css">
+    <link rel="stylesheet" href="https://192.168.0.14/css/style.css">
+
+    <link rel="stylesheet" href="https://192.168.0.14/bower_components/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://192.168.0.14/css/theme.css">
+    <link rel="stylesheet" href="https://192.168.0.14/css/side-navigation.css">
+    <link rel="stylesheet" href="https://192.168.0.14/css/bootstrap-multiselect.css">
+
+    <link rel="stylesheet" href="https://192.168.0.14/css/selectize.bootstrap3.css">
+    <script src="https://192.168.0.14/js/selectize.min.js"></script>
+
+    <link rel="shortcut icon" href="https://192.168.0.14/favicon.ico">
+<script src="https://192.168.0.14/js/alerts/toastr.min.js"></script>
+<script src="https://192.168.0.14/js/alerts/alert-helper.js"></script>
+<script>
+    toastr.options.timeOut = 5000;
+</script>
+<link rel="stylesheet" href="https://192.168.0.14/css/toastr.min.css">
+<style>
+    .toast-top-right {
+        top: 75px;
+        right: 12px;
+    }
+    #toast-container > div {
+        opacity:1;
+    }
+</style>
+        
+
+<script type="text/javascript">if (top != self) {top.location.href = self.location.href;}</script><script type="text/javascript">var csrfMagicToken = "sid:22d45279d470efdae3050d0faf78c90e5f6c4df4,1612911320";var csrfMagicName = "__csrf_magic";</script><script src="https://192.168.0.14/includes/csrf-magic/csrf-magic.js" type="text/javascript"></script></head>
+
+<body>
+
+    <script>
+var BASE_URL = 'https://192.168.0.14'; 
+var field_required_lang = '_XXX_ field is required'; 
+</script>
+<div id="load" style="display:none;">Sending request. Please wait.</div><header class="l-header">
+<div class="navbar">
+<div class="navbar-inner">
+<div class="container-fluid">
+<a class="brand" href="https://www.simplerisk.com/"><img src="https://192.168.0.14/images/logo@2x.png" alt="SimpleRisk Logo"></a>
+<div class="navbar-content">
+<ul class="nav">
+<li>
+<a href="https://192.168.0.14/governance/index.php">Governance</a>
+</li>
+<li class="active">
+<a href="https://192.168.0.14/management/index.php">Risk Management</a>
+</li>
+<li>
+<a href="https://192.168.0.14/compliance/index.php">Compliance</a>
+</li>
+<li>
+<a href="https://192.168.0.14/assets/index.php">Asset Management</a>
+</li>
+<li>
+<a href="https://192.168.0.14/assessments/index.php">Assessments</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/index.php">Reporting</a>
+</li>
+<li>
+<a href="https://192.168.0.14/admin/index.php">Configure</a>
+</li>
+</ul>
+</div>
+<div class="pull-right user--info">
+<a class="dropdown-toggle" data-toggle="dropdown" href="https://192.168.0.14/management/review_risks.php#">Admin<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li>
+<a href="https://192.168.0.14/account/profile.php">My Profile</a>
+</li>
+<li>
+<a href="https://192.168.0.14/logout.php">Logout</a>
+</li>
+</ul>
+</div>
+<div class="pull-right help">
+<a class="dropdown-toggle" data-toggle="dropdown" href="https://192.168.0.14/management/review_risks.php#"><img src="https://192.168.0.14/images/helpicon-top.png"><span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li>
+<a href="https://simplerisk.freshdesk.com/a/solutions/folders/6000228831" target="_blank">How-To Videos</a>
+</li>
+<li>
+<a href="https://simplerisk.freshdesk.com/a/solutions/folders/6000168810" target="_blank">FAQs</a>
+</li>
+<li>
+<a href="https://github.com/simplerisk/documentation/raw/master/SimpleRisk%20Release%20Notes%20.pdf" target="_blank">What's New</a>
+</li>
+<li>
+<a href="https://simplerisk.freshdesk.com/a/solutions/articles/6000190811" target="_blank">Roadmap</a>
+</li>
+</ul>
+</div>
+
+                    <div class="pull-right search-risks">
+                        <a id="show-search-pop"><i class="fa fa-search"></i></a>
+                        <div class="search-popup">
+                            <form name="search" action="https://192.168.0.14/management/view.php" method="get">
+                                <span class="search--wrapper">
+                                    <input type="text" size="6" name="id" placeholder="ID#" onclick="this.setSelectionRange(0, this.value.length)">
+                                    <a href="javascript:document.search.submit()"><i class="fa fa-search"></i></a>
+                                </span>
+                            </form>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+                        $(document).click(function() {
+                            $('.search-popup').hide();
+                        });
+
+                        $('#show-search-pop, .search-popup').click(function(event) {
+                            event.stopPropagation();
+                            event.preventDefault();
+                            $('.search-popup').show();
+                            $('.search-popup .search--wrapper input[type=text]').focus();
+                        });
+                    </script>
+</div>
+</div>
+</div>
+</header>
+      
+    <div class="tabs new-tabs">
+        <div class="container-fluid">
+          <div class="row-fluid">
+            <div class="span3"> </div>
+            <div class="span9">
+              <div class="tab-append">
+                <div class="tab selected form-tab tab-show new">
+                    <div>
+                        <span>
+                            Risk List                        </span>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="row-fluid">
+          <div class="span3">
+            <ul class="nav nav-pills nav-stacked aside--nav ">
+<li>
+<a href="https://192.168.0.14/management/index.php"> <span>1</span> Submit Risk</a>
+</li>
+<li>
+<a href="https://192.168.0.14/management/plan_mitigations.php"> <span>2</span> Plan Mitigation</a>
+</li>
+<li>
+<a href="https://192.168.0.14/management/management_review.php"> <span>3</span> Perform Reviews</a>
+</li>
+<li>
+<a href="https://192.168.0.14/management/prioritize_planning.php"> <span>4</span> Plan Projects</a>
+</li>
+<li class="active">
+<a href="https://192.168.0.14/management/review_risks.php"> <span>5</span> Review Regularly</a>
+</li>
+</ul>
+          </div>
+          <div class="span9">
+            <div id="tab-content-container" class="row-fluid">
+                <div id="tab-container" class="tab-data">
+                    <div class="row-fluid">
+                        <div class="span10">
+                            <p>Below is the list of all risks sorted by Unreviewed, Past Due, and Next Review Date.</p>
+                        </div>
+                        <div class="span2 text-right">
+                            <a href="https://192.168.0.14/management/review_risks.php#setting_modal" class="btn" title="Settings" role="button" data-toggle="modal"><i class="fa fa-gear"></i></a>
+                        </div>
+                    </div>
+                    <div class="row-fluid">
+                        <div class="span12 ">
+                            
+
+        <div id="review-risks_wrapper" class="dataTables_wrapper no-footer"><div id="review-risks_processing" class="dataTables_processing" style="display: none;">Processing...</div><div class="dataTables_scroll"><div class="dataTables_scrollHead" style="overflow: hidden; position: relative; border: 0px; width: 100%;"><div class="dataTables_scrollHeadInner" style="box-sizing: content-box; width: 1098.89px; padding-right: 0px;"><table width="100%" class="risk-datatable table table-bordered table-striped table-condensed dataTable no-footer" role="grid" style="margin-left: 0px; width: 1098.89px;"><thead>
+                <tr role="row"><th data-name="id" align="left" width="50px" valign="top" class="sorting" tabindex="0" aria-controls="review-risks" rowspan="1" colspan="1" style="width: 75.5556px;" aria-label="ID: activate to sort column ascending">ID</th><th data-name="risk_status" align="left" width="50px" valign="top" class="sorting" tabindex="0" aria-controls="review-risks" rowspan="1" colspan="1" style="width: 86.6667px;" aria-label="Status: activate to sort column ascending">Status</th><th data-name="subject" align="left" width="50px" valign="top" class="sorting" tabindex="0" aria-controls="review-risks" rowspan="1" colspan="1" style="width: 524.444px;" aria-label="Subject: activate to sort column ascending">Subject</th><th data-name="calculated_risk" align="left" width="50px" valign="top" class="sorting" tabindex="0" aria-controls="review-risks" rowspan="1" colspan="1" style="width: 80px;" aria-label="Inherent Risk: activate to sort column ascending">Inherent Risk</th><th data-name="days_open" align="left" width="50px" valign="top" class="sorting" tabindex="0" aria-controls="review-risks" rowspan="1" colspan="1" style="width: 77.7778px;" aria-label="Days Open: activate to sort column ascending">Days Open</th><th data-name="next_review_date" align="left" width="50px" valign="top" class="sorting_asc" tabindex="0" aria-controls="review-risks" rowspan="1" colspan="1" style="width: 126.667px;" aria-sort="ascending" aria-label="Next Review Date: activate to sort column descending">Next Review Date</th></tr>
+            </thead></table></div></div><div class="dataTables_scrollBody" style="position: relative; overflow: auto; width: 100%;"><table id="review-risks" width="100%" class="risk-datatable table table-bordered table-striped table-condensed dataTable no-footer" role="grid" aria-describedby="review-risks_info" style="width: 100%;"><thead>
+                <tr role="row" style="height: 0px;"><th data-name="id" align="left" width="50px" valign="top" class="sorting" aria-controls="review-risks" rowspan="1" colspan="1" style="width: 75.5556px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="ID: activate to sort column ascending"><div class="dataTables_sizing" style="height:0;overflow:hidden;">ID</div></th><th data-name="risk_status" align="left" width="50px" valign="top" class="sorting" aria-controls="review-risks" rowspan="1" colspan="1" style="width: 86.6667px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="Status: activate to sort column ascending"><div class="dataTables_sizing" style="height:0;overflow:hidden;">Status</div></th><th data-name="subject" align="left" width="50px" valign="top" class="sorting" aria-controls="review-risks" rowspan="1" colspan="1" style="width: 524.444px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="Subject: activate to sort column ascending"><div class="dataTables_sizing" style="height:0;overflow:hidden;">Subject</div></th><th data-name="calculated_risk" align="left" width="50px" valign="top" class="sorting" aria-controls="review-risks" rowspan="1" colspan="1" style="width: 80px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="Inherent Risk: activate to sort column ascending"><div class="dataTables_sizing" style="height:0;overflow:hidden;">Inherent Risk</div></th><th data-name="days_open" align="left" width="50px" valign="top" class="sorting" aria-controls="review-risks" rowspan="1" colspan="1" style="width: 77.7778px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-label="Days Open: activate to sort column ascending"><div class="dataTables_sizing" style="height:0;overflow:hidden;">Days Open</div></th><th data-name="next_review_date" align="left" width="50px" valign="top" class="sorting_asc" aria-controls="review-risks" rowspan="1" colspan="1" style="width: 126.667px; padding-top: 0px; padding-bottom: 0px; border-top-width: 0px; border-bottom-width: 0px; height: 0px;" aria-sort="ascending" aria-label="Next Review Date: activate to sort column descending"><div class="dataTables_sizing" style="height:0;overflow:hidden;">Next Review Date</div></th></tr>
+            </thead>
+            
+            <tbody>
+            <tr role="row" class="odd"><td><div data-id="1009" class="open-risk"><a href="https://192.168.0.14/management/view.php?id=1009&amp;active=ReviewRisksRegularly">1009</a></div></td><td>Mitigated</td><td>Attackers can take advantage of unknown vulnerabilities due to a lack of testing of organization defenses</td><td><div class="orange"><div class="risk-cell-holder" style="position:relative;">4.9<span class="risk-color" style="background-color:orange"></span></div></div></td><td>0</td><td class="sorting_1"><div data-id="1009" class="text-center open-review"><a href="https://192.168.0.14/management/view.php?id=1009&amp;type=2&amp;action=editreview">UNREVIEWED</a></div></td></tr><tr role="row" class="even"><td><div data-id="1008" class="open-risk"><a href="https://192.168.0.14/management/view.php?id=1008&amp;active=ReviewRisksRegularly">1008</a></div></td><td>Mitigated</td><td>Attackers can impersonate legitimate users by exploting legitimate but inactive user accounts</td><td><div class="orange"><div class="risk-cell-holder" style="position:relative;">4.1<span class="risk-color" style="background-color:orange"></span></div></div></td><td>0</td><td class="sorting_1"><div data-id="1008" class="text-center open-review"><a href="https://192.168.0.14/management/view.php?id=1008&amp;type=2&amp;action=editreview">UNREVIEWED</a></div></td></tr><tr role="row" class="odd"><td><div data-id="1001" class="open-risk"><a href="https://192.168.0.14/management/view.php?id=1001&amp;active=ReviewRisksRegularly">1001</a></div></td><td>Accepted</td><td>Attackers can use unauthorized and unmanaged devices to gain access to network</td><td><div class="yellow"><div class="risk-cell-holder" style="position:relative;">2.9<span class="risk-color" style="background-color:yellow"></span></div></div></td><td>0</td><td class="sorting_1"><div data-id="1001" class="text-center open-review"><a href="https://192.168.0.14/management/view.php?id=1001&amp;type=2&amp;action=editreview">UNREVIEWED</a></div></td></tr><tr role="row" class="even"><td><div data-id="1002" class="open-risk"><a href="https://192.168.0.14/management/view.php?id=1002&amp;active=ReviewRisksRegularly">1002</a></div></td><td>Accepted</td><td>Attackers can take advantage of gaps between the appearance of new knowledge and remediation to compromise computer systems</td><td><div class="yellow"><div class="risk-cell-holder" style="position:relative;">2.6<span class="risk-color" style="background-color:yellow"></span></div></div></td><td>0</td><td class="sorting_1"><div data-id="1002" class="text-center open-review"><a href="https://192.168.0.14/management/view.php?id=1002&amp;type=2&amp;action=editreview">UNREVIEWED</a></div></td></tr><tr role="row" class="odd"><td><div data-id="1003" class="open-risk"><a href="https://192.168.0.14/management/view.php?id=1003&amp;active=ReviewRisksRegularly">1003</a></div></td><td>Accepted</td><td>Attackers can craft content to entice or spoof users into taking actions that greatly increase risk and allow introduction of malicious code, loss of valuable data, and other attacks</td><td><div class="yellow"><div class="risk-cell-holder" style="position:relative;">2.6<span class="risk-color" style="background-color:yellow"></span></div></div></td><td>0</td><td class="sorting_1"><div data-id="1003" class="text-center open-review"><a href="https://192.168.0.14/management/view.php?id=1003&amp;type=2&amp;action=editreview">UNREVIEWED</a></div></td></tr><tr role="row" class="even"><td><div data-id="1004" class="open-risk"><a href="https://192.168.0.14/management/view.php?id=1004&amp;active=ReviewRisksRegularly">1004</a></div></td><td>Accepted</td><td>Attackers can scan for remotely accessible network services that are vulnerable to exploitation</td><td><div class="yellow"><div class="risk-cell-holder" style="position:relative;">2.6<span class="risk-color" style="background-color:yellow"></span></div></div></td><td>0</td><td class="sorting_1"><div data-id="1004" class="text-center open-review"><a href="https://192.168.0.14/management/view.php?id=1004&amp;type=2&amp;action=editreview">UNREVIEWED</a></div></td></tr><tr role="row" class="odd"><td><div data-id="1005" class="open-risk"><a href="https://192.168.0.14/management/view.php?id=1005&amp;active=ReviewRisksRegularly">1005</a></div></td><td>Accepted</td><td>Attackers can scan for remotely accessible network services that are vulnerable to exploitation</td><td><div class="yellow"><div class="risk-cell-holder" style="position:relative;">2.6<span class="risk-color" style="background-color:yellow"></span></div></div></td><td>0</td><td class="sorting_1"><div data-id="1005" class="text-center open-review"><a href="https://192.168.0.14/management/view.php?id=1005&amp;type=2&amp;action=editreview">UNREVIEWED</a></div></td></tr><tr role="row" class="even"><td><div data-id="1006" class="open-risk"><a href="https://192.168.0.14/management/view.php?id=1006&amp;active=ReviewRisksRegularly">1006</a></div></td><td>Accepted</td><td>Attackers can scan for remotely accessible network services that are vulnerable to exploitation</td><td><div class="yellow"><div class="risk-cell-holder" style="position:relative;">2.6<span class="risk-color" style="background-color:yellow"></span></div></div></td><td>0</td><td class="sorting_1"><div data-id="1006" class="text-center open-review"><a href="https://192.168.0.14/management/view.php?id=1006&amp;type=2&amp;action=editreview">UNREVIEWED</a></div></td></tr><tr role="row" class="odd"><td><div data-id="1007" class="open-risk"><a href="https://192.168.0.14/management/view.php?id=1007&amp;active=ReviewRisksRegularly">1007</a></div></td><td>Accepted</td><td>Attackers can gain access to sensitive data, alter important information, or use compromised machines to pose as trusted systems on our network by exploiting vulnerable services and settings</td><td><div class="yellow"><div class="risk-cell-holder" style="position:relative;">2.5<span class="risk-color" style="background-color:yellow"></span></div></div></td><td>0</td><td class="sorting_1"><div data-id="1007" class="text-center open-review"><a href="https://192.168.0.14/management/view.php?id=1007&amp;type=2&amp;action=editreview">UNREVIEWED</a></div></td></tr></tbody>
+        </table></div></div><div class="dataTables_info" id="review-risks_info" role="status" aria-live="polite">Showing 1 to 9 of 9 entries</div><div id="view-all" class="view-all">ALL</div><div class="dataTables_paginate paging_full_numbers" id="review-risks_paginate"><a class="paginate_button first disabled" aria-controls="review-risks" data-dt-idx="0" tabindex="0" id="review-risks_first"><i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i></a><a class="paginate_button previous disabled" aria-controls="review-risks" data-dt-idx="1" tabindex="0" id="review-risks_previous"><i class="fa fa-chevron-left"></i></a><span><a class="paginate_button current" aria-controls="review-risks" data-dt-idx="2" tabindex="0">1</a></span><a class="paginate_button next disabled" aria-controls="review-risks" data-dt-idx="3" tabindex="0" id="review-risks_next"><i class="fa fa-chevron-right"></i></a><a class="paginate_button last disabled" aria-controls="review-risks" data-dt-idx="4" tabindex="0" id="review-risks_last"><i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i></a></div></div>
+        <br>
+        <script>
+            var pageLength = 10;
+            var form = $('#review-risks').parents('form');
+            var datatableInstance = $('#review-risks').DataTable({
+                bFilter: false,
+                bLengthChange: false,
+                processing: true,
+                serverSide: true,
+                bSort: true,
+                pagingType: "full_numbers",
+                dom : "flrtip",
+                pageLength: pageLength,
+                dom : "flrti<'#view-all.view-all'>p",
+                createdRow: function(row, data, index){
+                    var background = $('.background-class', $(row)).data('background');
+                    $(row).find('td').addClass(background)
+                },
+                scrollX: true,
+                order: [[5, 'asc']],
+                ajax: {
+                    url: BASE_URL + '/api/risk_management/review_risks',
+                    type: 'post',
+                    data: function(d){
+                    },
+                    complete: function(response){
+                    }
+                },
+                columnDefs : [
+                    {
+                        'targets' : [],
+                        'orderable' : false,
+                    }
+                ]
+            });
+            // Add paginate options
+            datatableInstance.on('draw', function(e, settings){
+                $('.paginate_button.first').html('<i class="fa fa-chevron-left"></i><i class="fa fa-chevron-left"></i>');
+                $('.paginate_button.previous').html('<i class="fa fa-chevron-left"></i>');
+
+                $('.paginate_button.last').html('<i class="fa fa-chevron-right"></i><i class="fa fa-chevron-right"></i>');
+                $('.paginate_button.next').html('<i class="fa fa-chevron-right"></i>');
+            })
+            
+            // Add all text to View All button on bottom
+            $('.view-all').html("ALL");
+
+            // View All
+            $(".view-all").click(function(){
+                var oSettings =  datatableInstance.settings();
+                oSettings[0]._iDisplayLength = -1;
+                datatableInstance.draw()
+                $(this).addClass("current");
+            })
+            
+            // Page event
+            $("body").on("click", "span > .paginate_button", function(){
+                var index = $(this).attr('aria-controls').replace("DataTables_Table_", "");
+
+                var oSettings =  datatableInstance.settings();
+                if(oSettings[0]._iDisplayLength == -1){
+                    $(this).parents(".dataTables_wrapper").find('.view-all').removeClass('current');
+                    oSettings[0]._iDisplayLength = pageLength;
+                    datatableInstance.draw()
+                }
+            })
+            $(document).ready(function(){
+                $('.sortable-risk').sortable({
+                    connectWith: '.sortable-risk'
+                });
+                $('.sortable-mitigation').sortable({
+                    connectWith: '.sortable-mitigation'
+                });
+                $('.sortable-review').sortable({
+                    connectWith: '.sortable-review'
+                });
+                $('#save_display_settings').click(function(){
+                    var risk_checkboxes = $('.sortable-risk .hidden-checkbox');
+                    var riskColumns = [];
+                    risk_checkboxes.each(function(){
+                        var check_val = $(this).is(':checked')?1:0;
+                        riskColumns.push([$(this).attr('name'),check_val]);
+                    });
+                    var mitigation_checkboxes = $('.sortable-mitigation .hidden-checkbox');
+                    var mitigationColumns = [];
+                    mitigation_checkboxes.each(function(){
+                        var check_val = $(this).is(':checked')?1:0;
+                        mitigationColumns.push([$(this).attr('name'),check_val]);
+                    });
+                    var review_checkboxes = $('.sortable-review .hidden-checkbox');
+                    var reviewColumns = [];
+                    review_checkboxes.each(function(){
+                        var check_val = $(this).is(':checked')?1:0;
+                        reviewColumns.push([$(this).attr('name'),check_val]);
+                    });
+                    $.ajax({
+                        type: 'POST',
+                        url: BASE_URL + '/api/risk_management/save_custom_reviewregularly_display_settings',
+                        data:{
+                            risk_columns: riskColumns,
+                            mitigation_columns: mitigationColumns,
+                            review_columns: reviewColumns,
+                        },
+                        success: function(res){
+                            $('#setting_modal').modal('hide');
+                            showAlertsFromArray(res.status_message);
+                            document.location.reload();
+                        },
+                        error: function(xhr,status,error){
+                            if(!retryCSRF(xhr, this)){
+                                if(xhr.responseJSON && xhr.responseJSON.status_message) {
+                                    showAlertsFromArray(xhr.responseJSON.status_message);
+                                }
+                            }
+                        }
+                    });
+                    return false;
+                });
+            });
+        </script>
+                            </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+    </div>
+    <input type="hidden" id="_delete_tab_alert" value="Are you sure you want to close the risk? All changes will be lost!">
+    <input type="hidden" id="enable_popup" value="">
+    
+        <script type="">
+           $.datepicker.setDefaults({dateFormat: 'mm/dd/yy'});
+        </script>
+    
+    <!-- MODEL WINDOW FOR CONTROL DELETE CONFIRM -->
+    <div id="setting_modal" class="modal hide" tabindex="-1" role="dialog" aria-labelledby="setting_modal" aria-hidden="true" style="width:800px;">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal">×</button>
+            <h4 class="modal-title">Settings</h4>
+        </div>
+        <div class="modal-body">
+            <form id="custom_display_settings" name="custom_display_settings" method="post"><input type="hidden" name="__csrf_magic" value="sid:22d45279d470efdae3050d0faf78c90e5f6c4df4,1612911320">
+            
+        <style>
+            #column-selections-container label{color:#000;}
+            ul.sortable{list-style:none;margin:0;}
+            ul.sortable li{border: 1px dotted #cccccc;margin:2px 0;padding:5px;}
+        </style>
+        <div class="well" id="column-selections-container">
+            <h4 class="collapsible--toggle clearfix">
+                <span>Column Selections</span>
+            </h4>
+<div class="well">
+
+            <h4 class="collapsible--toggle clearfix">
+                <span><i class="fa fa-caret-down"></i>Risk Columns:</span>
+            </h4>
+
+            <div class="collapsible">
+                <div class="row-fluid">
+
+                    <div class="span6">
+
+                        <ul class="sortable sortable-risk ui-sortable"><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="id" id="checkbox_id" checked="yes">
+                                        <label for="checkbox_id">ID</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="risk_status" id="checkbox_risk_status" checked="yes">
+                                        <label for="checkbox_risk_status">Status</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="subject" id="checkbox_subject" checked="yes">
+                                        <label for="checkbox_subject">Subject</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="calculated_risk" id="checkbox_calculated_risk" checked="yes">
+                                        <label for="checkbox_calculated_risk">Inherent Risk</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="days_open" id="checkbox_days_open" checked="yes">
+                                        <label for="checkbox_days_open">Days Open</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="closure_date" id="checkbox_closure_date">
+                                        <label for="checkbox_closure_date">Date Closed</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="reference_id" id="checkbox_reference_id">
+                                        <label for="checkbox_reference_id">External Reference ID</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="regulation" id="checkbox_regulation">
+                                        <label for="checkbox_regulation">Control Regulation</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="control_number" id="checkbox_control_number">
+                                        <label for="checkbox_control_number">Control Number</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="location" id="checkbox_location">
+                                        <label for="checkbox_location">Site/Location</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="source" id="checkbox_source">
+                                        <label for="checkbox_source">Risk Source</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="category" id="checkbox_category">
+                                        <label for="checkbox_category">Category</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="team" id="checkbox_team">
+                                        <label for="checkbox_team">Team</label>
+                                    </li></ul>
+                    </div>
+
+                    <div class="span6">
+
+                        <ul class="sortable sortable-risk ui-sortable"><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="additional_stakeholders" id="checkbox_additional_stakeholders">
+                                        <label for="checkbox_additional_stakeholders">Additional Stakeholders</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="technology" id="checkbox_technology">
+                                        <label for="checkbox_technology">Technology</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="owner" id="checkbox_owner">
+                                        <label for="checkbox_owner">Owner</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="manager" id="checkbox_manager">
+                                        <label for="checkbox_manager">Owner's Manager</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="submitted_by" id="checkbox_submitted_by">
+                                        <label for="checkbox_submitted_by">Submitted By</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="risk_tags" id="checkbox_risk_tags">
+                                        <label for="checkbox_risk_tags">Tags</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="scoring_method" id="checkbox_scoring_method">
+                                        <label for="checkbox_scoring_method">Risk Scoring Method</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="residual_risk" id="checkbox_residual_risk">
+                                        <label for="checkbox_residual_risk">Residual Risk</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="submission_date" id="checkbox_submission_date">
+                                        <label for="checkbox_submission_date">Submission Date</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="project" id="checkbox_project">
+                                        <label for="checkbox_project">Project</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="affected_assets" id="checkbox_affected_assets">
+                                        <label for="checkbox_affected_assets">Affected Assets</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="risk_assessment" id="checkbox_risk_assessment">
+                                        <label for="checkbox_risk_assessment">Risk Assessment</label>
+                                    </li><li class="ui-sortable-handle">
+                                        <input class="hidden-checkbox" type="checkbox" name="additional_notes" id="checkbox_additional_notes">
+                                        <label for="checkbox_additional_notes">Additional Notes</label>
+                                    </li></ul>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+<div class="row-fluid">
+        <div class="span6">
+<div class="well">
+
+                <h4 class="collapsible--toggle clearfix">
+                    <span><i class="fa fa-caret-down"></i>Mitigation Columns:</span>
+                </h4>
+
+                <div class="collapsible">
+                    <ul class="sortable sortable-mitigation ui-sortable"><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="mitigation_planned" id="checkbox_mitigation_planned">
+                                    <label for="checkbox_mitigation_planned">Mitigation Planned</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="planning_strategy" id="checkbox_planning_strategy">
+                                    <label for="checkbox_planning_strategy">Planning Strategy</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="planning_date" id="checkbox_planning_date">
+                                    <label for="checkbox_planning_date">Planned Mitigation Date</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="mitigation_effort" id="checkbox_mitigation_effort">
+                                    <label for="checkbox_mitigation_effort">Mitigation Effort</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="mitigation_cost" id="checkbox_mitigation_cost">
+                                    <label for="checkbox_mitigation_cost">Mitigation Cost</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="mitigation_owner" id="checkbox_mitigation_owner">
+                                    <label for="checkbox_mitigation_owner">Mitigation Owner</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="mitigation_team" id="checkbox_mitigation_team">
+                                    <label for="checkbox_mitigation_team">Mitigation Team</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="mitigation_accepted" id="checkbox_mitigation_accepted">
+                                    <label for="checkbox_mitigation_accepted">Mitigation Accepted</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="mitigation_date" id="checkbox_mitigation_date">
+                                    <label for="checkbox_mitigation_date">Mitigation Submission Date</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="mitigation_controls" id="checkbox_mitigation_controls">
+                                    <label for="checkbox_mitigation_controls">Mitigation Controls</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="current_solution" id="checkbox_current_solution">
+                                    <label for="checkbox_current_solution">Current Solution</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="security_recommendations" id="checkbox_security_recommendations">
+                                    <label for="checkbox_security_recommendations">Security Recommendations</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="security_requirements" id="checkbox_security_requirements">
+                                    <label for="checkbox_security_requirements">Security Requirements</label>
+                                </li></ul>
+                </div>
+
+            </div>
+
+        </div>
+<div class="span6">
+
+            <div class="well">
+
+                <h4 class="collapsible--toggle clearfix">
+                    <span><i class="fa fa-caret-down"></i>Review Columns:</span>
+                </h4>
+
+                <div class="collapsible">
+                    <ul class="sortable sortable-review ui-sortable"><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="management_review" id="checkbox_management_review">
+                                    <label for="checkbox_management_review">Management Review</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="review_date" id="checkbox_review_date">
+                                    <label for="checkbox_review_date">Review Date</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="next_step" id="checkbox_next_step">
+                                    <label for="checkbox_next_step">Next Step</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="next_review_date" id="checkbox_next_review_date" checked="yes">
+                                    <label for="checkbox_next_review_date">Next Review Date</label>
+                                </li><li class="ui-sortable-handle">
+                                    <input class="hidden-checkbox" type="checkbox" name="comments" id="checkbox_comments">
+                                    <label for="checkbox_comments">Comments</label>
+                                </li></ul>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</div>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button type="submit" id="save_display_settings" class="btn btn-danger">Save</button>
+        </div>
+    </div>
+<script type="text/javascript">CsrfMagic.end();</script>
+
+</body></html>

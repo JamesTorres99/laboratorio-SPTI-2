@@ -1,0 +1,1045 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)https://192.168.0.14/assets/edit.php -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <script src="https://192.168.0.14/js/jquery.min.js"></script>
+  <script src="https://192.168.0.14/js/jquery-ui.min.js"></script>
+  <script src="https://192.168.0.14/js/bootstrap.min.js"></script>
+  <script src="https://192.168.0.14/js/pages/asset.js"></script>
+  <script src="https://192.168.0.14/js/bootstrap-multiselect.js"></script>
+
+  <title>SimpleRisk: Enterprise Risk Management Simplified</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="stylesheet" href="https://192.168.0.14/css/bootstrap.css">
+  <link rel="stylesheet" href="https://192.168.0.14/css/bootstrap-responsive.css">
+
+  <link rel="stylesheet" href="https://192.168.0.14/css/divshot-util.css">
+  <link rel="stylesheet" href="https://192.168.0.14/css/divshot-canvas.css">
+  <link rel="stylesheet" href="https://192.168.0.14/css/display.css">
+  <link rel="stylesheet" href="https://192.168.0.14/bower_components/font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://192.168.0.14/css/theme.css">
+  <link rel="stylesheet" href="https://192.168.0.14/css/side-navigation.css">
+  <link rel="stylesheet" href="https://192.168.0.14/css/selectize.bootstrap3.css">
+  <script src="https://192.168.0.14/js/selectize.min.js"></script>
+  <link rel="shortcut icon" href="https://192.168.0.14/favicon.ico">
+<script src="https://192.168.0.14/js/alerts/toastr.min.js"></script>
+<script src="https://192.168.0.14/js/alerts/alert-helper.js"></script>
+<script>
+    toastr.options.timeOut = 5000;
+</script>
+<link rel="stylesheet" href="https://192.168.0.14/css/toastr.min.css">
+<style>
+    .toast-top-right {
+        top: 75px;
+        right: 12px;
+    }
+    #toast-container > div {
+        opacity:1;
+    }
+</style>
+
+<script type="text/javascript">if (top != self) {top.location.href = self.location.href;}</script><script type="text/javascript">var csrfMagicToken = "sid:af522e41574acd7e32fdfcef3a3a4a9f5dd7ba05,1612910388";var csrfMagicName = "__csrf_magic";</script><script src="https://192.168.0.14/includes/csrf-magic/csrf-magic.js" type="text/javascript"></script></head>
+
+<body>
+
+  <script>
+var BASE_URL = 'https://192.168.0.14'; 
+var field_required_lang = '_XXX_ field is required'; 
+</script>
+<div id="load" style="display:none;">Sending request. Please wait.</div><header class="l-header">
+<div class="navbar">
+<div class="navbar-inner">
+<div class="container-fluid">
+<a class="brand" href="https://www.simplerisk.com/"><img src="https://192.168.0.14/images/logo@2x.png" alt="SimpleRisk Logo"></a>
+<div class="navbar-content">
+<ul class="nav">
+<li>
+<a href="https://192.168.0.14/governance/index.php">Governance</a>
+</li>
+<li>
+<a href="https://192.168.0.14/management/index.php">Risk Management</a>
+</li>
+<li>
+<a href="https://192.168.0.14/compliance/index.php">Compliance</a>
+</li>
+<li class="active">
+<a href="https://192.168.0.14/assets/index.php">Asset Management</a>
+</li>
+<li>
+<a href="https://192.168.0.14/assessments/index.php">Assessments</a>
+</li>
+<li>
+<a href="https://192.168.0.14/reports/index.php">Reporting</a>
+</li>
+<li>
+<a href="https://192.168.0.14/admin/index.php">Configure</a>
+</li>
+</ul>
+</div>
+<div class="pull-right user--info">
+<a class="dropdown-toggle" data-toggle="dropdown" href="https://192.168.0.14/assets/edit.php#">Admin<span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li>
+<a href="https://192.168.0.14/account/profile.php">My Profile</a>
+</li>
+<li>
+<a href="https://192.168.0.14/logout.php">Logout</a>
+</li>
+</ul>
+</div>
+<div class="pull-right help">
+<a class="dropdown-toggle" data-toggle="dropdown" href="https://192.168.0.14/assets/edit.php#"><img src="https://192.168.0.14/images/helpicon-top.png"><span class="caret"></span></a>
+<ul class="dropdown-menu">
+<li>
+<a href="https://simplerisk.freshdesk.com/a/solutions/folders/6000228831" target="_blank">How-To Videos</a>
+</li>
+<li>
+<a href="https://simplerisk.freshdesk.com/a/solutions/folders/6000168810" target="_blank">FAQs</a>
+</li>
+<li>
+<a href="https://github.com/simplerisk/documentation/raw/master/SimpleRisk%20Release%20Notes%20.pdf" target="_blank">What's New</a>
+</li>
+<li>
+<a href="https://simplerisk.freshdesk.com/a/solutions/articles/6000190811" target="_blank">Roadmap</a>
+</li>
+</ul>
+</div>
+
+                    <div class="pull-right search-risks">
+                        <a id="show-search-pop"><i class="fa fa-search"></i></a>
+                        <div class="search-popup" style="display: none;">
+                            <form name="search" action="https://192.168.0.14/management/view.php" method="get">
+                                <span class="search--wrapper">
+                                    <input type="text" size="6" name="id" placeholder="ID#" onclick="this.setSelectionRange(0, this.value.length)">
+                                    <a href="javascript:document.search.submit()"><i class="fa fa-search"></i></a>
+                                </span>
+                            </form>
+                        </div>
+                    </div>
+
+                    <script type="text/javascript">
+                        $(document).click(function() {
+                            $('.search-popup').hide();
+                        });
+
+                        $('#show-search-pop, .search-popup').click(function(event) {
+                            event.stopPropagation();
+                            event.preventDefault();
+                            $('.search-popup').show();
+                            $('.search-popup .search--wrapper input[type=text]').focus();
+                        });
+                    </script>
+</div>
+</div>
+</div>
+</header>
+  <script>
+    $(document).ready(function() {
+        $('#edit-assets-table select:not(.multiselect)').change(updateAsset);
+
+        var oldValue = "";
+        $('#edit-assets-table textarea, #edit-assets-table input').bind('focusin', function(){
+            oldValue = $(this).val();
+        });
+        $('#edit-assets-table textarea, #edit-assets-table input').bind('focusout', function(){
+            var newValue = $(this).val();
+            if(oldValue !== newValue){
+                updateAsset(null, $(this));
+            }
+        });
+    });
+  </script>
+  <div id="load" style="display:none;">Scanning IPs... Please wait.</div>
+  <div class="container-fluid">
+    <div class="row-fluid">
+      <div class="span3">
+        <ul class="nav nav-pills nav-stacked aside--nav ">
+<li>
+<a href="https://192.168.0.14/assets/index.php"> <span>1</span>Automated Discovery</a>
+</li>
+<li>
+<a href="https://192.168.0.14/assets/adddeleteassets.php"> <span>2</span>Add &amp; Delete Assets</a>
+</li>
+<li id="EditAssets" class="active">
+<a href="https://192.168.0.14/assets/edit.php"> <span>3</span> Edit Assets</a>
+</li>
+<li>
+<a href="https://192.168.0.14/assets/manage_asset_groups.php"> <span>4</span>Manage Asset Groups</a>
+</li>
+</ul>
+      </div>
+      <div class="span9">
+        <div class="row-fluid">
+          <div class="span12">
+            <div class="hero-unit">
+              <h4>Edit Assets</h4><br>
+                <div class="asset-table-container">
+                    <table id="edit-assets-table" class="table table-bordered table-condensed sortable">
+<thead>
+<tr>
+<th align="left">Asset Name</th>
+<th align="left">IP Address</th>
+<th align="left">Asset Valuation</th>
+<th align="left">Site/Location</th>
+<th align="left">Team</th>
+<th align="left">Asset Details</th>
+<th align="left">Tags</th>
+<th align="left">Verified</th>
+</tr>
+</thead>
+<tbody>
+<tr data-id="5">
+<td align="left">192.168.0.10</td>
+<td align="left">192.168.0.10</td>
+<td align="left"><select id="value-5" name="asset_valuation" class="form-field" style="width:auto;">
+  <option value="1">$0 to $100,000</option>
+  <option value="2">$100,001 to $200,000</option>
+  <option value="3">$200,001 to $300,000</option>
+  <option value="4" selected="">$300,001 to $400,000</option>
+  <option value="5">$400,001 to $500,000</option>
+  <option value="6">$500,001 to $600,000</option>
+  <option value="7">$600,001 to $700,000</option>
+  <option value="8">$700,001 to $800,000</option>
+  <option value="9">$800,001 to $900,000</option>
+  <option value="10">$900,001 to $1,000,000</option>
+</select>
+</td>
+<td>
+<select id="location-5" name="location-5" class="form-field form-control" style="width:auto;">
+    <option value="">--</option>
+    <option value="1" selected="">All Sites</option>
+  </select>
+</td>
+<td>
+<span class="multiselect-native-select"><select class="multiselect" multiple="multiple" id="team-5" name="team-5[]">
+    <option value="1">Branch Management</option>
+    <option value="2">Collaboration</option>
+    <option value="3">Data Center &amp; Storage</option>
+    <option value="4" selected="">Database</option>
+    <option value="5">Information Security</option>
+    <option value="6">IT Systems Management</option>
+    <option value="7">Network</option>
+    <option value="8">Unix</option>
+    <option value="9">Web Systems</option>
+    <option value="10">Windows</option>
+  </select><div class="btn-group" style="width: 200px;"><button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="Database" style="width: 100%; overflow: hidden; text-overflow: ellipsis;"><span class="multiselect-selected-text">Database</span> <b class="caret"></b></button><ul class="multiselect-container dropdown-menu" style="max-height: 250px; overflow: hidden auto;"><li class="multiselect-item multiselect-filter" value="0"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text" placeholder="Search"><span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span></div></li><li><a tabindex="0"><label class="checkbox" title="Branch Management"><input type="checkbox" value="1"> Branch Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Collaboration"><input type="checkbox" value="2"> Collaboration</label></a></li><li><a tabindex="0"><label class="checkbox" title="Data Center &amp; Storage"><input type="checkbox" value="3"> Data Center &amp; Storage</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Database"><input type="checkbox" value="4"> Database</label></a></li><li><a tabindex="0"><label class="checkbox" title="Information Security"><input type="checkbox" value="5"> Information Security</label></a></li><li><a tabindex="0"><label class="checkbox" title="IT Systems Management"><input type="checkbox" value="6"> IT Systems Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Network"><input type="checkbox" value="7"> Network</label></a></li><li><a tabindex="0"><label class="checkbox" title="Unix"><input type="checkbox" value="8"> Unix</label></a></li><li><a tabindex="0"><label class="checkbox" title="Web Systems"><input type="checkbox" value="9"> Web Systems</label></a></li><li><a tabindex="0"><label class="checkbox" title="Windows"><input type="checkbox" value="10"> Windows</label></a></li></ul></div></span>
+</td>
+<td>
+<textarea id="details-5">Name of the owner: Escuela
+Name of the responsible: James Torres
+Name of the custodian: Luis Catros
+Name of the area or process: Registro
+Type of asset: Hardware
+Asset users: estudiantes
+Classification: Uso interno
+Impact to availability: 4
+Impact to confidentiality: 5
+Impact to Integrity: 4
+Total Impact: 13
+</textarea>
+</td>
+<td>
+  <input type="text" class="selectize-marker selectized" readonly="" id="tags-5" value="" tabindex="-1" style="display: none;"><div class="selectize-control selectize-marker multi plugin-remove_button plugin-restore_on_backspace"><div class="selectize-input items not-full"><input type="text" autocomplete="off" tabindex="" id="tags-5-selectized" style="width: 4px;"></div><div class="selectize-dropdown multi selectize-marker plugin-remove_button plugin-restore_on_backspace" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+            <script>
+                $('#tags-5').selectize({
+                    plugins: ['remove_button', 'restore_on_backspace'],
+                    delimiter: '+++',
+                    create: true,
+                    valueField: 'label',
+                    labelField: 'label',
+                    searchField: 'label',
+                    sortField: [{ field: 'label', direction: 'asc' }],
+                    onChange: function() {
+                        updateAsset(null, $('#tags-5'));
+                    }
+                });
+            </script></td>
+<td>Yes</td>
+</tr>
+<tr data-id="6">
+<td align="left">192.168.0.11</td>
+<td align="left">192.168.0.11</td>
+<td align="left"><select id="value-6" name="asset_valuation" class="form-field" style="width:auto;">
+  <option value="1">$0 to $100,000</option>
+  <option value="2">$100,001 to $200,000</option>
+  <option value="3" selected="">$200,001 to $300,000</option>
+  <option value="4">$300,001 to $400,000</option>
+  <option value="5">$400,001 to $500,000</option>
+  <option value="6">$500,001 to $600,000</option>
+  <option value="7">$600,001 to $700,000</option>
+  <option value="8">$700,001 to $800,000</option>
+  <option value="9">$800,001 to $900,000</option>
+  <option value="10">$900,001 to $1,000,000</option>
+</select>
+</td>
+<td>
+<select id="location-6" name="location-6" class="form-field form-control" style="width:auto;">
+    <option value="">--</option>
+    <option value="1" selected="">All Sites</option>
+  </select>
+</td>
+<td>
+<span class="multiselect-native-select"><select class="multiselect" multiple="multiple" id="team-6" name="team-6[]">
+    <option value="1">Branch Management</option>
+    <option value="2">Collaboration</option>
+    <option value="3">Data Center &amp; Storage</option>
+    <option value="4">Database</option>
+    <option value="5" selected="">Information Security</option>
+    <option value="6">IT Systems Management</option>
+    <option value="7">Network</option>
+    <option value="8">Unix</option>
+    <option value="9">Web Systems</option>
+    <option value="10">Windows</option>
+  </select><div class="btn-group" style="width: 200px;"><button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="Information Security" style="width: 100%; overflow: hidden; text-overflow: ellipsis;"><span class="multiselect-selected-text">Information Security</span> <b class="caret"></b></button><ul class="multiselect-container dropdown-menu" style="max-height: 250px; overflow: hidden auto;"><li class="multiselect-item multiselect-filter" value="0"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text" placeholder="Search"><span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span></div></li><li><a tabindex="0"><label class="checkbox" title="Branch Management"><input type="checkbox" value="1"> Branch Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Collaboration"><input type="checkbox" value="2"> Collaboration</label></a></li><li><a tabindex="0"><label class="checkbox" title="Data Center &amp; Storage"><input type="checkbox" value="3"> Data Center &amp; Storage</label></a></li><li><a tabindex="0"><label class="checkbox" title="Database"><input type="checkbox" value="4"> Database</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Information Security"><input type="checkbox" value="5"> Information Security</label></a></li><li><a tabindex="0"><label class="checkbox" title="IT Systems Management"><input type="checkbox" value="6"> IT Systems Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Network"><input type="checkbox" value="7"> Network</label></a></li><li><a tabindex="0"><label class="checkbox" title="Unix"><input type="checkbox" value="8"> Unix</label></a></li><li><a tabindex="0"><label class="checkbox" title="Web Systems"><input type="checkbox" value="9"> Web Systems</label></a></li><li><a tabindex="0"><label class="checkbox" title="Windows"><input type="checkbox" value="10"> Windows</label></a></li></ul></div></span>
+</td>
+<td>
+<textarea id="details-6">Name of the owner: Escuela
+Name of the responsible: Juan Luis
+Name of the custodian: Carlos Ramirez
+Name of the area or process: Osiris
+Type of asset: Software
+Asset users: estudiantes
+Classification: Clasificado
+Impact to availability: 3
+Impact to confidentiality: 5
+Impact to Integrity: 3
+Total Impact: 11
+</textarea>
+</td>
+<td>
+  <input type="text" class="selectize-marker selectized" readonly="" id="tags-6" value="" tabindex="-1" style="display: none;"><div class="selectize-control selectize-marker multi plugin-remove_button plugin-restore_on_backspace"><div class="selectize-input items not-full"><input type="text" autocomplete="off" tabindex="" id="tags-6-selectized" style="width: 4px;"></div><div class="selectize-dropdown multi selectize-marker plugin-remove_button plugin-restore_on_backspace" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+            <script>
+                $('#tags-6').selectize({
+                    plugins: ['remove_button', 'restore_on_backspace'],
+                    delimiter: '+++',
+                    create: true,
+                    valueField: 'label',
+                    labelField: 'label',
+                    searchField: 'label',
+                    sortField: [{ field: 'label', direction: 'asc' }],
+                    onChange: function() {
+                        updateAsset(null, $('#tags-6'));
+                    }
+                });
+            </script></td>
+<td>Yes</td>
+</tr>
+<tr data-id="9">
+<td align="left">192.168.0.12</td>
+<td align="left">192.168.0.12</td>
+<td align="left"><select id="value-9" name="asset_valuation" class="form-field" style="width:auto;">
+  <option value="1">$0 to $100,000</option>
+  <option value="2" selected="">$100,001 to $200,000</option>
+  <option value="3">$200,001 to $300,000</option>
+  <option value="4">$300,001 to $400,000</option>
+  <option value="5">$400,001 to $500,000</option>
+  <option value="6">$500,001 to $600,000</option>
+  <option value="7">$600,001 to $700,000</option>
+  <option value="8">$700,001 to $800,000</option>
+  <option value="9">$800,001 to $900,000</option>
+  <option value="10">$900,001 to $1,000,000</option>
+</select>
+</td>
+<td>
+<select id="location-9" name="location-9" class="form-field form-control" style="width:auto;">
+    <option value="">--</option>
+    <option value="1" selected="">All Sites</option>
+  </select>
+</td>
+<td>
+<span class="multiselect-native-select"><select class="multiselect" multiple="multiple" id="team-9" name="team-9[]">
+    <option value="1">Branch Management</option>
+    <option value="2">Collaboration</option>
+    <option value="3">Data Center &amp; Storage</option>
+    <option value="4">Database</option>
+    <option value="5">Information Security</option>
+    <option value="6">IT Systems Management</option>
+    <option value="7" selected="">Network</option>
+    <option value="8">Unix</option>
+    <option value="9">Web Systems</option>
+    <option value="10">Windows</option>
+  </select><div class="btn-group" style="width: 200px;"><button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="Network" style="width: 100%; overflow: hidden; text-overflow: ellipsis;"><span class="multiselect-selected-text">Network</span> <b class="caret"></b></button><ul class="multiselect-container dropdown-menu" style="max-height: 250px; overflow: hidden auto;"><li class="multiselect-item multiselect-filter" value="0"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text" placeholder="Search"><span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span></div></li><li><a tabindex="0"><label class="checkbox" title="Branch Management"><input type="checkbox" value="1"> Branch Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Collaboration"><input type="checkbox" value="2"> Collaboration</label></a></li><li><a tabindex="0"><label class="checkbox" title="Data Center &amp; Storage"><input type="checkbox" value="3"> Data Center &amp; Storage</label></a></li><li><a tabindex="0"><label class="checkbox" title="Database"><input type="checkbox" value="4"> Database</label></a></li><li><a tabindex="0"><label class="checkbox" title="Information Security"><input type="checkbox" value="5"> Information Security</label></a></li><li><a tabindex="0"><label class="checkbox" title="IT Systems Management"><input type="checkbox" value="6"> IT Systems Management</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Network"><input type="checkbox" value="7"> Network</label></a></li><li><a tabindex="0"><label class="checkbox" title="Unix"><input type="checkbox" value="8"> Unix</label></a></li><li><a tabindex="0"><label class="checkbox" title="Web Systems"><input type="checkbox" value="9"> Web Systems</label></a></li><li><a tabindex="0"><label class="checkbox" title="Windows"><input type="checkbox" value="10"> Windows</label></a></li></ul></div></span>
+</td>
+<td>
+<textarea id="details-9">Name of the owner: Escuela
+Name of the responsible: Carlos Pinto
+Name of the custodian: Aurora Cardenas
+Name of the area or process: Osiris
+Type of asset: Hardware
+Asset users: estudiantes
+Classification: Publico
+Impact to availability: 3
+Impact to confidentiality: 2
+Impact to Integrity: 3
+Total Impact: 8
+</textarea>
+</td>
+<td>
+  <input type="text" class="selectize-marker selectized" readonly="" id="tags-9" value="" tabindex="-1" style="display: none;"><div class="selectize-control selectize-marker multi plugin-remove_button plugin-restore_on_backspace"><div class="selectize-input items not-full"><input type="text" autocomplete="off" tabindex="" id="tags-9-selectized" style="width: 4px;"></div><div class="selectize-dropdown multi selectize-marker plugin-remove_button plugin-restore_on_backspace" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+            <script>
+                $('#tags-9').selectize({
+                    plugins: ['remove_button', 'restore_on_backspace'],
+                    delimiter: '+++',
+                    create: true,
+                    valueField: 'label',
+                    labelField: 'label',
+                    searchField: 'label',
+                    sortField: [{ field: 'label', direction: 'asc' }],
+                    onChange: function() {
+                        updateAsset(null, $('#tags-9'));
+                    }
+                });
+            </script></td>
+<td>Yes</td>
+</tr>
+<tr data-id="8">
+<td align="left">192.168.0.17</td>
+<td align="left">192.168.0.17</td>
+<td align="left"><select id="value-8" name="asset_valuation" class="form-field" style="width:auto;">
+  <option value="1">$0 to $100,000</option>
+  <option value="2">$100,001 to $200,000</option>
+  <option value="3" selected="">$200,001 to $300,000</option>
+  <option value="4">$300,001 to $400,000</option>
+  <option value="5">$400,001 to $500,000</option>
+  <option value="6">$500,001 to $600,000</option>
+  <option value="7">$600,001 to $700,000</option>
+  <option value="8">$700,001 to $800,000</option>
+  <option value="9">$800,001 to $900,000</option>
+  <option value="10">$900,001 to $1,000,000</option>
+</select>
+</td>
+<td>
+<select id="location-8" name="location-8" class="form-field form-control" style="width:auto;">
+    <option value="">--</option>
+    <option value="1" selected="">All Sites</option>
+  </select>
+</td>
+<td>
+<span class="multiselect-native-select"><select class="multiselect" multiple="multiple" id="team-8" name="team-8[]">
+    <option value="1">Branch Management</option>
+    <option value="2">Collaboration</option>
+    <option value="3" selected="">Data Center &amp; Storage</option>
+    <option value="4">Database</option>
+    <option value="5">Information Security</option>
+    <option value="6">IT Systems Management</option>
+    <option value="7">Network</option>
+    <option value="8">Unix</option>
+    <option value="9">Web Systems</option>
+    <option value="10">Windows</option>
+  </select><div class="btn-group" style="width: 200px;"><button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="Data Center &amp; Storage" style="width: 100%; overflow: hidden; text-overflow: ellipsis;"><span class="multiselect-selected-text">Data Center &amp; Storage</span> <b class="caret"></b></button><ul class="multiselect-container dropdown-menu" style="max-height: 250px; overflow: hidden auto;"><li class="multiselect-item multiselect-filter" value="0"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text" placeholder="Search"><span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span></div></li><li><a tabindex="0"><label class="checkbox" title="Branch Management"><input type="checkbox" value="1"> Branch Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Collaboration"><input type="checkbox" value="2"> Collaboration</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Data Center &amp; Storage"><input type="checkbox" value="3"> Data Center &amp; Storage</label></a></li><li><a tabindex="0"><label class="checkbox" title="Database"><input type="checkbox" value="4"> Database</label></a></li><li><a tabindex="0"><label class="checkbox" title="Information Security"><input type="checkbox" value="5"> Information Security</label></a></li><li><a tabindex="0"><label class="checkbox" title="IT Systems Management"><input type="checkbox" value="6"> IT Systems Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Network"><input type="checkbox" value="7"> Network</label></a></li><li><a tabindex="0"><label class="checkbox" title="Unix"><input type="checkbox" value="8"> Unix</label></a></li><li><a tabindex="0"><label class="checkbox" title="Web Systems"><input type="checkbox" value="9"> Web Systems</label></a></li><li><a tabindex="0"><label class="checkbox" title="Windows"><input type="checkbox" value="10"> Windows</label></a></li></ul></div></span>
+</td>
+<td>
+<textarea id="details-8">Name of the owner: Escuela
+Name of the responsible: Oswaldo Castillo
+Name of the custodian: Juana Arco
+Name of the area or process: Ing. sistemas
+Type of asset: Hardware
+Asset users: Profesores
+Classification: Confidencial
+Impact to availability: 4
+Impact to confidentiality: 3
+Impact to Integrity: 4
+Total Impact: 11
+</textarea>
+</td>
+<td>
+  <input type="text" class="selectize-marker selectized" readonly="" id="tags-8" value="" tabindex="-1" style="display: none;"><div class="selectize-control selectize-marker multi plugin-remove_button plugin-restore_on_backspace"><div class="selectize-input items not-full"><input type="text" autocomplete="off" tabindex="" id="tags-8-selectized" style="width: 4px;"></div><div class="selectize-dropdown multi selectize-marker plugin-remove_button plugin-restore_on_backspace" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+            <script>
+                $('#tags-8').selectize({
+                    plugins: ['remove_button', 'restore_on_backspace'],
+                    delimiter: '+++',
+                    create: true,
+                    valueField: 'label',
+                    labelField: 'label',
+                    searchField: 'label',
+                    sortField: [{ field: 'label', direction: 'asc' }],
+                    onChange: function() {
+                        updateAsset(null, $('#tags-8'));
+                    }
+                });
+            </script></td>
+<td>Yes</td>
+</tr>
+<tr data-id="3">
+<td align="left">Application</td>
+<td align="left">N/A</td>
+<td align="left"><select id="value-3" name="asset_valuation" class="form-field" style="width:auto;">
+  <option value="1" selected="">$0 to $100,000</option>
+  <option value="2">$100,001 to $200,000</option>
+  <option value="3">$200,001 to $300,000</option>
+  <option value="4">$300,001 to $400,000</option>
+  <option value="5">$400,001 to $500,000</option>
+  <option value="6">$500,001 to $600,000</option>
+  <option value="7">$600,001 to $700,000</option>
+  <option value="8">$700,001 to $800,000</option>
+  <option value="9">$800,001 to $900,000</option>
+  <option value="10">$900,001 to $1,000,000</option>
+</select>
+</td>
+<td>
+<select id="location-3" name="location-3" class="form-field form-control" style="width:auto;">
+    <option value="">--</option>
+    <option value="1">All Sites</option>
+  </select>
+</td>
+<td>
+<span class="multiselect-native-select"><select class="multiselect" multiple="multiple" id="team-3" name="team-3[]">
+    <option value="1">Branch Management</option>
+    <option value="2">Collaboration</option>
+    <option value="3">Data Center &amp; Storage</option>
+    <option value="4">Database</option>
+    <option value="5">Information Security</option>
+    <option value="6">IT Systems Management</option>
+    <option value="7">Network</option>
+    <option value="8">Unix</option>
+    <option value="9">Web Systems</option>
+    <option value="10">Windows</option>
+  </select><div class="btn-group" style="width: 200px;"><button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="None selected" style="width: 100%; overflow: hidden; text-overflow: ellipsis;"><span class="multiselect-selected-text">None selected</span> <b class="caret"></b></button><ul class="multiselect-container dropdown-menu" style="max-height: 250px; overflow: hidden auto;"><li class="multiselect-item multiselect-filter" value="0"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text" placeholder="Search"><span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span></div></li><li><a tabindex="0"><label class="checkbox" title="Branch Management"><input type="checkbox" value="1"> Branch Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Collaboration"><input type="checkbox" value="2"> Collaboration</label></a></li><li><a tabindex="0"><label class="checkbox" title="Data Center &amp; Storage"><input type="checkbox" value="3"> Data Center &amp; Storage</label></a></li><li><a tabindex="0"><label class="checkbox" title="Database"><input type="checkbox" value="4"> Database</label></a></li><li><a tabindex="0"><label class="checkbox" title="Information Security"><input type="checkbox" value="5"> Information Security</label></a></li><li><a tabindex="0"><label class="checkbox" title="IT Systems Management"><input type="checkbox" value="6"> IT Systems Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Network"><input type="checkbox" value="7"> Network</label></a></li><li><a tabindex="0"><label class="checkbox" title="Unix"><input type="checkbox" value="8"> Unix</label></a></li><li><a tabindex="0"><label class="checkbox" title="Web Systems"><input type="checkbox" value="9"> Web Systems</label></a></li><li><a tabindex="0"><label class="checkbox" title="Windows"><input type="checkbox" value="10"> Windows</label></a></li></ul></div></span>
+</td>
+<td>
+<textarea id="details-3"></textarea>
+</td>
+<td>
+  <input type="text" class="selectize-marker selectized" readonly="" id="tags-3" value="" tabindex="-1" style="display: none;"><div class="selectize-control selectize-marker multi plugin-remove_button plugin-restore_on_backspace"><div class="selectize-input items not-full"><input type="text" autocomplete="off" tabindex="" id="tags-3-selectized" style="width: 4px;"></div><div class="selectize-dropdown multi selectize-marker plugin-remove_button plugin-restore_on_backspace" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+            <script>
+                $('#tags-3').selectize({
+                    plugins: ['remove_button', 'restore_on_backspace'],
+                    delimiter: '+++',
+                    create: true,
+                    valueField: 'label',
+                    labelField: 'label',
+                    searchField: 'label',
+                    sortField: [{ field: 'label', direction: 'asc' }],
+                    onChange: function() {
+                        updateAsset(null, $('#tags-3'));
+                    }
+                });
+            </script></td>
+<td>Yes</td>
+</tr>
+<tr data-id="13">
+<td align="left">Centro de redes y servidores</td>
+<td align="left">192.168.0.14</td>
+<td align="left"><select id="value-13" name="asset_valuation" class="form-field" style="width:auto;">
+  <option value="1">$0 to $100,000</option>
+  <option value="2" selected="">$100,001 to $200,000</option>
+  <option value="3">$200,001 to $300,000</option>
+  <option value="4">$300,001 to $400,000</option>
+  <option value="5">$400,001 to $500,000</option>
+  <option value="6">$500,001 to $600,000</option>
+  <option value="7">$600,001 to $700,000</option>
+  <option value="8">$700,001 to $800,000</option>
+  <option value="9">$800,001 to $900,000</option>
+  <option value="10">$900,001 to $1,000,000</option>
+</select>
+</td>
+<td>
+<select id="location-13" name="location-13" class="form-field form-control" style="width:auto;">
+    <option value="">--</option>
+    <option value="1" selected="">All Sites</option>
+  </select>
+</td>
+<td>
+<span class="multiselect-native-select"><select class="multiselect" multiple="multiple" id="team-13" name="team-13[]">
+    <option value="1">Branch Management</option>
+    <option value="2">Collaboration</option>
+    <option value="3" selected="">Data Center &amp; Storage</option>
+    <option value="4">Database</option>
+    <option value="5">Information Security</option>
+    <option value="6">IT Systems Management</option>
+    <option value="7">Network</option>
+    <option value="8">Unix</option>
+    <option value="9">Web Systems</option>
+    <option value="10">Windows</option>
+  </select><div class="btn-group" style="width: 200px;"><button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="Data Center &amp; Storage" style="width: 100%; overflow: hidden; text-overflow: ellipsis;"><span class="multiselect-selected-text">Data Center &amp; Storage</span> <b class="caret"></b></button><ul class="multiselect-container dropdown-menu" style="max-height: 250px; overflow: hidden auto;"><li class="multiselect-item multiselect-filter" value="0"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text" placeholder="Search"><span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span></div></li><li><a tabindex="0"><label class="checkbox" title="Branch Management"><input type="checkbox" value="1"> Branch Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Collaboration"><input type="checkbox" value="2"> Collaboration</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Data Center &amp; Storage"><input type="checkbox" value="3"> Data Center &amp; Storage</label></a></li><li><a tabindex="0"><label class="checkbox" title="Database"><input type="checkbox" value="4"> Database</label></a></li><li><a tabindex="0"><label class="checkbox" title="Information Security"><input type="checkbox" value="5"> Information Security</label></a></li><li><a tabindex="0"><label class="checkbox" title="IT Systems Management"><input type="checkbox" value="6"> IT Systems Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Network"><input type="checkbox" value="7"> Network</label></a></li><li><a tabindex="0"><label class="checkbox" title="Unix"><input type="checkbox" value="8"> Unix</label></a></li><li><a tabindex="0"><label class="checkbox" title="Web Systems"><input type="checkbox" value="9"> Web Systems</label></a></li><li><a tabindex="0"><label class="checkbox" title="Windows"><input type="checkbox" value="10"> Windows</label></a></li></ul></div></span>
+</td>
+<td>
+<textarea id="details-13">Name of the owner: Escuela 
+Name of the responsible: Oswaldo Castillo Name of the custodian: Juana Arco 
+Name of the area or process: Ing. sistemas Type of asset: Hardware 
+Asset users: Profesores 
+Classification: Confidencial 
+Impact to availability: 4 
+Impact to confidentiality: 3 
+Impact to Integrity: 4 
+Total Impact: 11</textarea>
+</td>
+<td>
+  <input type="text" class="selectize-marker selectized" readonly="" id="tags-13" value="" tabindex="-1" style="display: none;"><div class="selectize-control selectize-marker multi plugin-remove_button plugin-restore_on_backspace"><div class="selectize-input items not-full"><input type="text" autocomplete="off" tabindex="" id="tags-13-selectized" style="width: 4px;"></div><div class="selectize-dropdown multi selectize-marker plugin-remove_button plugin-restore_on_backspace" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+            <script>
+                $('#tags-13').selectize({
+                    plugins: ['remove_button', 'restore_on_backspace'],
+                    delimiter: '+++',
+                    create: true,
+                    valueField: 'label',
+                    labelField: 'label',
+                    searchField: 'label',
+                    sortField: [{ field: 'label', direction: 'asc' }],
+                    onChange: function() {
+                        updateAsset(null, $('#tags-13'));
+                    }
+                });
+            </script></td>
+<td>Yes</td>
+</tr>
+<tr data-id="10">
+<td align="left">Database Departamento de Registro</td>
+<td align="left">192.168.0.10</td>
+<td align="left"><select id="value-10" name="asset_valuation" class="form-field" style="width:auto;">
+  <option value="1">$0 to $100,000</option>
+  <option value="2">$100,001 to $200,000</option>
+  <option value="3">$200,001 to $300,000</option>
+  <option value="4" selected="">$300,001 to $400,000</option>
+  <option value="5">$400,001 to $500,000</option>
+  <option value="6">$500,001 to $600,000</option>
+  <option value="7">$600,001 to $700,000</option>
+  <option value="8">$700,001 to $800,000</option>
+  <option value="9">$800,001 to $900,000</option>
+  <option value="10">$900,001 to $1,000,000</option>
+</select>
+</td>
+<td>
+<select id="location-10" name="location-10" class="form-field form-control" style="width:auto;">
+    <option value="">--</option>
+    <option value="1" selected="">All Sites</option>
+  </select>
+</td>
+<td>
+<span class="multiselect-native-select"><select class="multiselect" multiple="multiple" id="team-10" name="team-10[]">
+    <option value="1">Branch Management</option>
+    <option value="2">Collaboration</option>
+    <option value="3">Data Center &amp; Storage</option>
+    <option value="4" selected="">Database</option>
+    <option value="5">Information Security</option>
+    <option value="6">IT Systems Management</option>
+    <option value="7">Network</option>
+    <option value="8">Unix</option>
+    <option value="9">Web Systems</option>
+    <option value="10">Windows</option>
+  </select><div class="btn-group" style="width: 200px;"><button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="Database" style="width: 100%; overflow: hidden; text-overflow: ellipsis;"><span class="multiselect-selected-text">Database</span> <b class="caret"></b></button><ul class="multiselect-container dropdown-menu" style="max-height: 250px; overflow: hidden auto;"><li class="multiselect-item multiselect-filter" value="0"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text" placeholder="Search"><span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span></div></li><li><a tabindex="0"><label class="checkbox" title="Branch Management"><input type="checkbox" value="1"> Branch Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Collaboration"><input type="checkbox" value="2"> Collaboration</label></a></li><li><a tabindex="0"><label class="checkbox" title="Data Center &amp; Storage"><input type="checkbox" value="3"> Data Center &amp; Storage</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Database"><input type="checkbox" value="4"> Database</label></a></li><li><a tabindex="0"><label class="checkbox" title="Information Security"><input type="checkbox" value="5"> Information Security</label></a></li><li><a tabindex="0"><label class="checkbox" title="IT Systems Management"><input type="checkbox" value="6"> IT Systems Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Network"><input type="checkbox" value="7"> Network</label></a></li><li><a tabindex="0"><label class="checkbox" title="Unix"><input type="checkbox" value="8"> Unix</label></a></li><li><a tabindex="0"><label class="checkbox" title="Web Systems"><input type="checkbox" value="9"> Web Systems</label></a></li><li><a tabindex="0"><label class="checkbox" title="Windows"><input type="checkbox" value="10"> Windows</label></a></li></ul></div></span>
+</td>
+<td>
+<textarea id="details-10">Name of the owner: Escuela 
+Name of the responsible: James Torres Name of the custodian: Luis Catros 
+Name of the area or process: Registro 
+Type of asset: Hardware 
+Asset users: estudiantes 
+Classification: Uso interno 
+Impact to availability: 4 
+Impact to confidentiality: 5 
+Impact to Integrity: 4 
+Total Impact: 13</textarea>
+</td>
+<td>
+  <input type="text" class="selectize-marker selectized" readonly="" id="tags-10" value="" tabindex="-1" style="display: none;"><div class="selectize-control selectize-marker multi plugin-remove_button plugin-restore_on_backspace"><div class="selectize-input items not-full"><input type="text" autocomplete="off" tabindex="" id="tags-10-selectized" style="width: 4px;"></div><div class="selectize-dropdown multi selectize-marker plugin-remove_button plugin-restore_on_backspace" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+            <script>
+                $('#tags-10').selectize({
+                    plugins: ['remove_button', 'restore_on_backspace'],
+                    delimiter: '+++',
+                    create: true,
+                    valueField: 'label',
+                    labelField: 'label',
+                    searchField: 'label',
+                    sortField: [{ field: 'label', direction: 'asc' }],
+                    onChange: function() {
+                        updateAsset(null, $('#tags-10'));
+                    }
+                });
+            </script></td>
+<td>Yes</td>
+</tr>
+<tr data-id="2">
+<td align="left">Network</td>
+<td align="left">N/A</td>
+<td align="left"><select id="value-2" name="asset_valuation" class="form-field" style="width:auto;">
+  <option value="1" selected="">$0 to $100,000</option>
+  <option value="2">$100,001 to $200,000</option>
+  <option value="3">$200,001 to $300,000</option>
+  <option value="4">$300,001 to $400,000</option>
+  <option value="5">$400,001 to $500,000</option>
+  <option value="6">$500,001 to $600,000</option>
+  <option value="7">$600,001 to $700,000</option>
+  <option value="8">$700,001 to $800,000</option>
+  <option value="9">$800,001 to $900,000</option>
+  <option value="10">$900,001 to $1,000,000</option>
+</select>
+</td>
+<td>
+<select id="location-2" name="location-2" class="form-field form-control" style="width:auto;">
+    <option value="">--</option>
+    <option value="1">All Sites</option>
+  </select>
+</td>
+<td>
+<span class="multiselect-native-select"><select class="multiselect" multiple="multiple" id="team-2" name="team-2[]">
+    <option value="1">Branch Management</option>
+    <option value="2">Collaboration</option>
+    <option value="3">Data Center &amp; Storage</option>
+    <option value="4">Database</option>
+    <option value="5">Information Security</option>
+    <option value="6">IT Systems Management</option>
+    <option value="7">Network</option>
+    <option value="8">Unix</option>
+    <option value="9">Web Systems</option>
+    <option value="10">Windows</option>
+  </select><div class="btn-group" style="width: 200px;"><button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="None selected" style="width: 100%; overflow: hidden; text-overflow: ellipsis;"><span class="multiselect-selected-text">None selected</span> <b class="caret"></b></button><ul class="multiselect-container dropdown-menu" style="max-height: 250px; overflow: hidden auto;"><li class="multiselect-item multiselect-filter" value="0"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text" placeholder="Search"><span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span></div></li><li><a tabindex="0"><label class="checkbox" title="Branch Management"><input type="checkbox" value="1"> Branch Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Collaboration"><input type="checkbox" value="2"> Collaboration</label></a></li><li><a tabindex="0"><label class="checkbox" title="Data Center &amp; Storage"><input type="checkbox" value="3"> Data Center &amp; Storage</label></a></li><li><a tabindex="0"><label class="checkbox" title="Database"><input type="checkbox" value="4"> Database</label></a></li><li><a tabindex="0"><label class="checkbox" title="Information Security"><input type="checkbox" value="5"> Information Security</label></a></li><li><a tabindex="0"><label class="checkbox" title="IT Systems Management"><input type="checkbox" value="6"> IT Systems Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Network"><input type="checkbox" value="7"> Network</label></a></li><li><a tabindex="0"><label class="checkbox" title="Unix"><input type="checkbox" value="8"> Unix</label></a></li><li><a tabindex="0"><label class="checkbox" title="Web Systems"><input type="checkbox" value="9"> Web Systems</label></a></li><li><a tabindex="0"><label class="checkbox" title="Windows"><input type="checkbox" value="10"> Windows</label></a></li></ul></div></span>
+</td>
+<td>
+<textarea id="details-2"></textarea>
+</td>
+<td>
+  <input type="text" class="selectize-marker selectized" readonly="" id="tags-2" value="" tabindex="-1" style="display: none;"><div class="selectize-control selectize-marker multi plugin-remove_button plugin-restore_on_backspace"><div class="selectize-input items not-full"><input type="text" autocomplete="off" tabindex="" id="tags-2-selectized" style="width: 4px;"></div><div class="selectize-dropdown multi selectize-marker plugin-remove_button plugin-restore_on_backspace" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+            <script>
+                $('#tags-2').selectize({
+                    plugins: ['remove_button', 'restore_on_backspace'],
+                    delimiter: '+++',
+                    create: true,
+                    valueField: 'label',
+                    labelField: 'label',
+                    searchField: 'label',
+                    sortField: [{ field: 'label', direction: 'asc' }],
+                    onChange: function() {
+                        updateAsset(null, $('#tags-2'));
+                    }
+                });
+            </script></td>
+<td>Yes</td>
+</tr>
+<tr data-id="11">
+<td align="left">Servidor Osiris</td>
+<td align="left">192.168.0.11</td>
+<td align="left"><select id="value-11" name="asset_valuation" class="form-field" style="width:auto;">
+  <option value="1">$0 to $100,000</option>
+  <option value="2">$100,001 to $200,000</option>
+  <option value="3" selected="">$200,001 to $300,000</option>
+  <option value="4">$300,001 to $400,000</option>
+  <option value="5">$400,001 to $500,000</option>
+  <option value="6">$500,001 to $600,000</option>
+  <option value="7">$600,001 to $700,000</option>
+  <option value="8">$700,001 to $800,000</option>
+  <option value="9">$800,001 to $900,000</option>
+  <option value="10">$900,001 to $1,000,000</option>
+</select>
+</td>
+<td>
+<select id="location-11" name="location-11" class="form-field form-control" style="width:auto;">
+    <option value="">--</option>
+    <option value="1" selected="">All Sites</option>
+  </select>
+</td>
+<td>
+<span class="multiselect-native-select"><select class="multiselect" multiple="multiple" id="team-11" name="team-11[]">
+    <option value="1">Branch Management</option>
+    <option value="2">Collaboration</option>
+    <option value="3">Data Center &amp; Storage</option>
+    <option value="4">Database</option>
+    <option value="5" selected="">Information Security</option>
+    <option value="6">IT Systems Management</option>
+    <option value="7">Network</option>
+    <option value="8">Unix</option>
+    <option value="9">Web Systems</option>
+    <option value="10">Windows</option>
+  </select><div class="btn-group" style="width: 200px;"><button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="Information Security" style="width: 100%; overflow: hidden; text-overflow: ellipsis;"><span class="multiselect-selected-text">Information Security</span> <b class="caret"></b></button><ul class="multiselect-container dropdown-menu" style="max-height: 250px; overflow: hidden auto;"><li class="multiselect-item multiselect-filter" value="0"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text" placeholder="Search"><span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span></div></li><li><a tabindex="0"><label class="checkbox" title="Branch Management"><input type="checkbox" value="1"> Branch Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Collaboration"><input type="checkbox" value="2"> Collaboration</label></a></li><li><a tabindex="0"><label class="checkbox" title="Data Center &amp; Storage"><input type="checkbox" value="3"> Data Center &amp; Storage</label></a></li><li><a tabindex="0"><label class="checkbox" title="Database"><input type="checkbox" value="4"> Database</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Information Security"><input type="checkbox" value="5"> Information Security</label></a></li><li><a tabindex="0"><label class="checkbox" title="IT Systems Management"><input type="checkbox" value="6"> IT Systems Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Network"><input type="checkbox" value="7"> Network</label></a></li><li><a tabindex="0"><label class="checkbox" title="Unix"><input type="checkbox" value="8"> Unix</label></a></li><li><a tabindex="0"><label class="checkbox" title="Web Systems"><input type="checkbox" value="9"> Web Systems</label></a></li><li><a tabindex="0"><label class="checkbox" title="Windows"><input type="checkbox" value="10"> Windows</label></a></li></ul></div></span>
+</td>
+<td>
+<textarea id="details-11">Name of the owner: Escuela 
+Name of the responsible: Juan Luis 
+Name of the custodian: Carlos Ramirez Name of the area or process: Osiris 
+Type of asset: Software 
+Asset users: estudiantes 
+Classification: Clasificado 
+Impact to availability: 3 
+Impact to confidentiality: 5 
+Impact to Integrity: 3 
+Total Impact: 11</textarea>
+</td>
+<td>
+  <input type="text" class="selectize-marker selectized" readonly="" id="tags-11" value="" tabindex="-1" style="display: none;"><div class="selectize-control selectize-marker multi plugin-remove_button plugin-restore_on_backspace"><div class="selectize-input items not-full"><input type="text" autocomplete="off" tabindex="" id="tags-11-selectized" style="width: 4px;"></div><div class="selectize-dropdown multi selectize-marker plugin-remove_button plugin-restore_on_backspace" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+            <script>
+                $('#tags-11').selectize({
+                    plugins: ['remove_button', 'restore_on_backspace'],
+                    delimiter: '+++',
+                    create: true,
+                    valueField: 'label',
+                    labelField: 'label',
+                    searchField: 'label',
+                    sortField: [{ field: 'label', direction: 'asc' }],
+                    onChange: function() {
+                        updateAsset(null, $('#tags-11'));
+                    }
+                });
+            </script></td>
+<td>Yes</td>
+</tr>
+<tr data-id="12">
+<td align="left">Servidor Salón de redes</td>
+<td align="left">192.168.0.12</td>
+<td align="left"><select id="value-12" name="asset_valuation" class="form-field" style="width:auto;">
+  <option value="1">$0 to $100,000</option>
+  <option value="2" selected="">$100,001 to $200,000</option>
+  <option value="3">$200,001 to $300,000</option>
+  <option value="4">$300,001 to $400,000</option>
+  <option value="5">$400,001 to $500,000</option>
+  <option value="6">$500,001 to $600,000</option>
+  <option value="7">$600,001 to $700,000</option>
+  <option value="8">$700,001 to $800,000</option>
+  <option value="9">$800,001 to $900,000</option>
+  <option value="10">$900,001 to $1,000,000</option>
+</select>
+</td>
+<td>
+<select id="location-12" name="location-12" class="form-field form-control" style="width:auto;">
+    <option value="">--</option>
+    <option value="1" selected="">All Sites</option>
+  </select>
+</td>
+<td>
+<span class="multiselect-native-select"><select class="multiselect" multiple="multiple" id="team-12" name="team-12[]">
+    <option value="1">Branch Management</option>
+    <option value="2">Collaboration</option>
+    <option value="3">Data Center &amp; Storage</option>
+    <option value="4">Database</option>
+    <option value="5">Information Security</option>
+    <option value="6">IT Systems Management</option>
+    <option value="7" selected="">Network</option>
+    <option value="8">Unix</option>
+    <option value="9">Web Systems</option>
+    <option value="10">Windows</option>
+  </select><div class="btn-group" style="width: 200px;"><button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="Network" style="width: 100%; overflow: hidden; text-overflow: ellipsis;"><span class="multiselect-selected-text">Network</span> <b class="caret"></b></button><ul class="multiselect-container dropdown-menu" style="max-height: 250px; overflow: hidden auto;"><li class="multiselect-item multiselect-filter" value="0"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text" placeholder="Search"><span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span></div></li><li><a tabindex="0"><label class="checkbox" title="Branch Management"><input type="checkbox" value="1"> Branch Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Collaboration"><input type="checkbox" value="2"> Collaboration</label></a></li><li><a tabindex="0"><label class="checkbox" title="Data Center &amp; Storage"><input type="checkbox" value="3"> Data Center &amp; Storage</label></a></li><li><a tabindex="0"><label class="checkbox" title="Database"><input type="checkbox" value="4"> Database</label></a></li><li><a tabindex="0"><label class="checkbox" title="Information Security"><input type="checkbox" value="5"> Information Security</label></a></li><li><a tabindex="0"><label class="checkbox" title="IT Systems Management"><input type="checkbox" value="6"> IT Systems Management</label></a></li><li class="active"><a tabindex="0"><label class="checkbox" title="Network"><input type="checkbox" value="7"> Network</label></a></li><li><a tabindex="0"><label class="checkbox" title="Unix"><input type="checkbox" value="8"> Unix</label></a></li><li><a tabindex="0"><label class="checkbox" title="Web Systems"><input type="checkbox" value="9"> Web Systems</label></a></li><li><a tabindex="0"><label class="checkbox" title="Windows"><input type="checkbox" value="10"> Windows</label></a></li></ul></div></span>
+</td>
+<td>
+<textarea id="details-12">Name of the owner: Escuela 
+Name of the responsible: Carlos Pinto Name of the custodian: Aurora Cardenas Name of the area or process: Osiris 
+Type of asset: Hardware 
+Asset users: estudiantes 
+Classification: Publico 
+Impact to availability: 3 
+Impact to confidentiality: 2 
+Impact to Integrity: 3 
+Total Impact: 8</textarea>
+</td>
+<td>
+  <input type="text" class="selectize-marker selectized" readonly="" id="tags-12" value="" tabindex="-1" style="display: none;"><div class="selectize-control selectize-marker multi plugin-remove_button plugin-restore_on_backspace"><div class="selectize-input items not-full"><input type="text" autocomplete="off" tabindex="" id="tags-12-selectized" style="width: 4px;"></div><div class="selectize-dropdown multi selectize-marker plugin-remove_button plugin-restore_on_backspace" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+            <script>
+                $('#tags-12').selectize({
+                    plugins: ['remove_button', 'restore_on_backspace'],
+                    delimiter: '+++',
+                    create: true,
+                    valueField: 'label',
+                    labelField: 'label',
+                    searchField: 'label',
+                    sortField: [{ field: 'label', direction: 'asc' }],
+                    onChange: function() {
+                        updateAsset(null, $('#tags-12'));
+                    }
+                });
+            </script></td>
+<td>Yes</td>
+</tr>
+<tr data-id="7">
+<td align="left">simplerisk</td>
+<td align="left">192.168.0.14</td>
+<td align="left"><select id="value-7" name="asset_valuation" class="form-field" style="width:auto;">
+  <option value="1" selected="">$0 to $100,000</option>
+  <option value="2">$100,001 to $200,000</option>
+  <option value="3">$200,001 to $300,000</option>
+  <option value="4">$300,001 to $400,000</option>
+  <option value="5">$400,001 to $500,000</option>
+  <option value="6">$500,001 to $600,000</option>
+  <option value="7">$600,001 to $700,000</option>
+  <option value="8">$700,001 to $800,000</option>
+  <option value="9">$800,001 to $900,000</option>
+  <option value="10">$900,001 to $1,000,000</option>
+</select>
+</td>
+<td>
+<select id="location-7" name="location-7" class="form-field form-control" style="width:auto;">
+    <option value="">--</option>
+    <option value="1">All Sites</option>
+  </select>
+</td>
+<td>
+<span class="multiselect-native-select"><select class="multiselect" multiple="multiple" id="team-7" name="team-7[]">
+    <option value="1">Branch Management</option>
+    <option value="2">Collaboration</option>
+    <option value="3">Data Center &amp; Storage</option>
+    <option value="4">Database</option>
+    <option value="5">Information Security</option>
+    <option value="6">IT Systems Management</option>
+    <option value="7">Network</option>
+    <option value="8">Unix</option>
+    <option value="9">Web Systems</option>
+    <option value="10">Windows</option>
+  </select><div class="btn-group" style="width: 200px;"><button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="None selected" style="width: 100%; overflow: hidden; text-overflow: ellipsis;"><span class="multiselect-selected-text">None selected</span> <b class="caret"></b></button><ul class="multiselect-container dropdown-menu" style="max-height: 250px; overflow: hidden auto;"><li class="multiselect-item multiselect-filter" value="0"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text" placeholder="Search"><span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span></div></li><li><a tabindex="0"><label class="checkbox" title="Branch Management"><input type="checkbox" value="1"> Branch Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Collaboration"><input type="checkbox" value="2"> Collaboration</label></a></li><li><a tabindex="0"><label class="checkbox" title="Data Center &amp; Storage"><input type="checkbox" value="3"> Data Center &amp; Storage</label></a></li><li><a tabindex="0"><label class="checkbox" title="Database"><input type="checkbox" value="4"> Database</label></a></li><li><a tabindex="0"><label class="checkbox" title="Information Security"><input type="checkbox" value="5"> Information Security</label></a></li><li><a tabindex="0"><label class="checkbox" title="IT Systems Management"><input type="checkbox" value="6"> IT Systems Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Network"><input type="checkbox" value="7"> Network</label></a></li><li><a tabindex="0"><label class="checkbox" title="Unix"><input type="checkbox" value="8"> Unix</label></a></li><li><a tabindex="0"><label class="checkbox" title="Web Systems"><input type="checkbox" value="9"> Web Systems</label></a></li><li><a tabindex="0"><label class="checkbox" title="Windows"><input type="checkbox" value="10"> Windows</label></a></li></ul></div></span>
+</td>
+<td>
+<textarea id="details-7"></textarea>
+</td>
+<td>
+  <input type="text" class="selectize-marker selectized" readonly="" id="tags-7" value="" tabindex="-1" style="display: none;"><div class="selectize-control selectize-marker multi plugin-remove_button plugin-restore_on_backspace"><div class="selectize-input items not-full"><input type="text" autocomplete="off" tabindex="" id="tags-7-selectized" style="width: 4px;"></div><div class="selectize-dropdown multi selectize-marker plugin-remove_button plugin-restore_on_backspace" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+            <script>
+                $('#tags-7').selectize({
+                    plugins: ['remove_button', 'restore_on_backspace'],
+                    delimiter: '+++',
+                    create: true,
+                    valueField: 'label',
+                    labelField: 'label',
+                    searchField: 'label',
+                    sortField: [{ field: 'label', direction: 'asc' }],
+                    onChange: function() {
+                        updateAsset(null, $('#tags-7'));
+                    }
+                });
+            </script></td>
+<td>Yes</td>
+</tr>
+<tr data-id="1">
+<td align="left">System</td>
+<td align="left">N/A</td>
+<td align="left"><select id="value-1" name="asset_valuation" class="form-field" style="width:auto;">
+  <option value="1" selected="">$0 to $100,000</option>
+  <option value="2">$100,001 to $200,000</option>
+  <option value="3">$200,001 to $300,000</option>
+  <option value="4">$300,001 to $400,000</option>
+  <option value="5">$400,001 to $500,000</option>
+  <option value="6">$500,001 to $600,000</option>
+  <option value="7">$600,001 to $700,000</option>
+  <option value="8">$700,001 to $800,000</option>
+  <option value="9">$800,001 to $900,000</option>
+  <option value="10">$900,001 to $1,000,000</option>
+</select>
+</td>
+<td>
+<select id="location-1" name="location-1" class="form-field form-control" style="width:auto;">
+    <option value="">--</option>
+    <option value="1">All Sites</option>
+  </select>
+</td>
+<td>
+<span class="multiselect-native-select"><select class="multiselect" multiple="multiple" id="team-1" name="team-1[]">
+    <option value="1">Branch Management</option>
+    <option value="2">Collaboration</option>
+    <option value="3">Data Center &amp; Storage</option>
+    <option value="4">Database</option>
+    <option value="5">Information Security</option>
+    <option value="6">IT Systems Management</option>
+    <option value="7">Network</option>
+    <option value="8">Unix</option>
+    <option value="9">Web Systems</option>
+    <option value="10">Windows</option>
+  </select><div class="btn-group" style="width: 200px;"><button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="None selected" style="width: 100%; overflow: hidden; text-overflow: ellipsis;"><span class="multiselect-selected-text">None selected</span> <b class="caret"></b></button><ul class="multiselect-container dropdown-menu" style="max-height: 250px; overflow: hidden auto;"><li class="multiselect-item multiselect-filter" value="0"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text" placeholder="Search"><span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span></div></li><li><a tabindex="0"><label class="checkbox" title="Branch Management"><input type="checkbox" value="1"> Branch Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Collaboration"><input type="checkbox" value="2"> Collaboration</label></a></li><li><a tabindex="0"><label class="checkbox" title="Data Center &amp; Storage"><input type="checkbox" value="3"> Data Center &amp; Storage</label></a></li><li><a tabindex="0"><label class="checkbox" title="Database"><input type="checkbox" value="4"> Database</label></a></li><li><a tabindex="0"><label class="checkbox" title="Information Security"><input type="checkbox" value="5"> Information Security</label></a></li><li><a tabindex="0"><label class="checkbox" title="IT Systems Management"><input type="checkbox" value="6"> IT Systems Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Network"><input type="checkbox" value="7"> Network</label></a></li><li><a tabindex="0"><label class="checkbox" title="Unix"><input type="checkbox" value="8"> Unix</label></a></li><li><a tabindex="0"><label class="checkbox" title="Web Systems"><input type="checkbox" value="9"> Web Systems</label></a></li><li><a tabindex="0"><label class="checkbox" title="Windows"><input type="checkbox" value="10"> Windows</label></a></li></ul></div></span>
+</td>
+<td>
+<textarea id="details-1"></textarea>
+</td>
+<td>
+  <input type="text" class="selectize-marker selectized" readonly="" id="tags-1" value="" tabindex="-1" style="display: none;"><div class="selectize-control selectize-marker multi plugin-remove_button plugin-restore_on_backspace"><div class="selectize-input items not-full"><input type="text" autocomplete="off" tabindex="" id="tags-1-selectized" style="width: 4px;"></div><div class="selectize-dropdown multi selectize-marker plugin-remove_button plugin-restore_on_backspace" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+            <script>
+                $('#tags-1').selectize({
+                    plugins: ['remove_button', 'restore_on_backspace'],
+                    delimiter: '+++',
+                    create: true,
+                    valueField: 'label',
+                    labelField: 'label',
+                    searchField: 'label',
+                    sortField: [{ field: 'label', direction: 'asc' }],
+                    onChange: function() {
+                        updateAsset(null, $('#tags-1'));
+                    }
+                });
+            </script></td>
+<td>Yes</td>
+</tr>
+<tr data-id="4">
+<td align="left">_gateway</td>
+<td align="left">192.168.0.1</td>
+<td align="left"><select id="value-4" name="asset_valuation" class="form-field" style="width:auto;">
+  <option value="1" selected="">$0 to $100,000</option>
+  <option value="2">$100,001 to $200,000</option>
+  <option value="3">$200,001 to $300,000</option>
+  <option value="4">$300,001 to $400,000</option>
+  <option value="5">$400,001 to $500,000</option>
+  <option value="6">$500,001 to $600,000</option>
+  <option value="7">$600,001 to $700,000</option>
+  <option value="8">$700,001 to $800,000</option>
+  <option value="9">$800,001 to $900,000</option>
+  <option value="10">$900,001 to $1,000,000</option>
+</select>
+</td>
+<td>
+<select id="location-4" name="location-4" class="form-field form-control" style="width:auto;">
+    <option value="">--</option>
+    <option value="1">All Sites</option>
+  </select>
+</td>
+<td>
+<span class="multiselect-native-select"><select class="multiselect" multiple="multiple" id="team-4" name="team-4[]">
+    <option value="1">Branch Management</option>
+    <option value="2">Collaboration</option>
+    <option value="3">Data Center &amp; Storage</option>
+    <option value="4">Database</option>
+    <option value="5">Information Security</option>
+    <option value="6">IT Systems Management</option>
+    <option value="7">Network</option>
+    <option value="8">Unix</option>
+    <option value="9">Web Systems</option>
+    <option value="10">Windows</option>
+  </select><div class="btn-group" style="width: 200px;"><button type="button" class="multiselect dropdown-toggle btn btn-default" data-toggle="dropdown" title="None selected" style="width: 100%; overflow: hidden; text-overflow: ellipsis;"><span class="multiselect-selected-text">None selected</span> <b class="caret"></b></button><ul class="multiselect-container dropdown-menu" style="max-height: 250px; overflow: hidden auto;"><li class="multiselect-item multiselect-filter" value="0"><div class="input-group"><span class="input-group-addon"><i class="glyphicon glyphicon-search"></i></span><input class="form-control multiselect-search" type="text" placeholder="Search"><span class="input-group-btn"><button class="btn btn-default multiselect-clear-filter" type="button"><i class="glyphicon glyphicon-remove-circle"></i></button></span></div></li><li><a tabindex="0"><label class="checkbox" title="Branch Management"><input type="checkbox" value="1"> Branch Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Collaboration"><input type="checkbox" value="2"> Collaboration</label></a></li><li><a tabindex="0"><label class="checkbox" title="Data Center &amp; Storage"><input type="checkbox" value="3"> Data Center &amp; Storage</label></a></li><li><a tabindex="0"><label class="checkbox" title="Database"><input type="checkbox" value="4"> Database</label></a></li><li><a tabindex="0"><label class="checkbox" title="Information Security"><input type="checkbox" value="5"> Information Security</label></a></li><li><a tabindex="0"><label class="checkbox" title="IT Systems Management"><input type="checkbox" value="6"> IT Systems Management</label></a></li><li><a tabindex="0"><label class="checkbox" title="Network"><input type="checkbox" value="7"> Network</label></a></li><li><a tabindex="0"><label class="checkbox" title="Unix"><input type="checkbox" value="8"> Unix</label></a></li><li><a tabindex="0"><label class="checkbox" title="Web Systems"><input type="checkbox" value="9"> Web Systems</label></a></li><li><a tabindex="0"><label class="checkbox" title="Windows"><input type="checkbox" value="10"> Windows</label></a></li></ul></div></span>
+</td>
+<td>
+<textarea id="details-4"></textarea>
+</td>
+<td>
+  <input type="text" class="selectize-marker selectized" readonly="" id="tags-4" value="" tabindex="-1" style="display: none;"><div class="selectize-control selectize-marker multi plugin-remove_button plugin-restore_on_backspace"><div class="selectize-input items not-full"><input type="text" autocomplete="off" tabindex="" id="tags-4-selectized" style="width: 4px;"></div><div class="selectize-dropdown multi selectize-marker plugin-remove_button plugin-restore_on_backspace" style="display: none;"><div class="selectize-dropdown-content"></div></div></div>
+            <script>
+                $('#tags-4').selectize({
+                    plugins: ['remove_button', 'restore_on_backspace'],
+                    delimiter: '+++',
+                    create: true,
+                    valueField: 'label',
+                    labelField: 'label',
+                    searchField: 'label',
+                    sortField: [{ field: 'label', direction: 'asc' }],
+                    onChange: function() {
+                        updateAsset(null, $('#tags-4'));
+                    }
+                });
+            </script></td>
+<td>Yes</td>
+</tr>
+</tbody>
+</table>
+                </div>
+                    
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+    $(document).ready(function() {
+      $('.multiselect').multiselect({
+        buttonWidth: '200px', 
+        maxHeight: 250, 
+        enableFiltering: true,
+        onDropdownHide: function(event){
+            updateAsset(null, $(event.currentTarget).prev())
+        }
+      });
+      
+      $('.datepicker').datepicker({
+         onSelect: function(date, datepciker){
+             updateAsset(null, $("#"+datepciker.id));
+         }
+      });
+    });
+  </script>
+  
+        <script type="">
+           $.datepicker.setDefaults({dateFormat: 'mm/dd/yy'});
+        </script>
+    <script type="text/javascript">CsrfMagic.end();</script>
+
+
+</body></html>
